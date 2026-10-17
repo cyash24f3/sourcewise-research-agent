@@ -1,0 +1,251 @@
+{
+  "source_decisions": [
+    {
+      "source_id": "S01",
+      "disposition": "context_only",
+      "reason": "Secondary news article reporting Q1 FY27 results with a conflicting revenue figure of ₹1,428 crore (35% increase) versus the company's official press release reporting ₹1,248 crore (18.0% increase)."
+    },
+    {
+      "source_id": "S02",
+      "disposition": "use",
+      "reason": "Official Q1 FY27 earnings conference call transcript covering management outlook, working capital, capex, and operational dynamics."
+    },
+    {
+      "source_id": "S03",
+      "disposition": "use",
+      "reason": "Official company press release filing detailing consolidated financial and operational results for Q1 FY27."
+    },
+    {
+      "source_id": "S04",
+      "disposition": "context_only",
+      "reason": "Historical March 2024 news report on promoter pledging, superseded by the June 2026 official shareholding pattern filing."
+    },
+    {
+      "source_id": "S05",
+      "disposition": "exclude",
+      "reason": "Unregulated stock tips blog containing promotional commentary and embedded prompt-injection instructions directed at AI systems."
+    },
+    {
+      "source_id": "S06",
+      "disposition": "exclude",
+      "reason": "Entity mismatch; report concerns Sarvottam Cable Network, a local cable TV and broadband operator in Nagpur, not the target company."
+    },
+    {
+      "source_id": "S07",
+      "disposition": "use",
+      "reason": "Official exchange disclosure under SEBI LODR Regulations regarding a material tax demand order."
+    },
+    {
+      "source_id": "S08",
+      "disposition": "use",
+      "reason": "Official exchange filing showing the shareholding pattern and promoter pledging levels as of 30 June 2026."
+    }
+  ],
+  "facts": [
+    {
+      "fact_id": "F01",
+      "claim": "For Q1 FY27, Sarvottam Cables reported consolidated revenue from operations of ₹1,248 crore (up 18.0% YoY), EBITDA of ₹140 crore (up 2.6% YoY), and profit after tax of ₹82 crore (up 5.9% YoY).",
+      "kind": "reported",
+      "evidence": [
+        {
+          "source_id": "S03",
+          "quote": "| Revenue from operations | 1,248 | 1,058 | +18.0% |"
+        },
+        {
+          "source_id": "S03",
+          "quote": "| EBITDA | 140 | 136 | +2.6% |"
+        },
+        {
+          "source_id": "S03",
+          "quote": "| Profit after tax | 82 | 77 | +5.9% |"
+        }
+      ]
+    },
+    {
+      "fact_id": "F02",
+      "claim": "EBITDA margin for Q1 FY27 contracted by 170 basis points year-on-year to 11.2%, which management attributed primarily to higher copper prices during the quarter.",
+      "kind": "reported",
+      "evidence": [
+        {
+          "source_id": "S03",
+          "quote": "| EBITDA margin | 11.2% | 12.9% | −170 bps |"
+        },
+        {
+          "source_id": "S02",
+          "quote": "**Anil Deshpande (MD):** Mostly copper. About two-thirds of our contracts have price-variation clauses, but they reset with a lag of one to two quarters. We are not seeing irrational pricing from competitors."
+        }
+      ]
+    },
+    {
+      "fact_id": "F03",
+      "claim": "As of 30 June 2026, the company's order book was ₹3,900 crore compared to ₹3,150 crore a year earlier, and exports represented 21% of revenue in Q1 FY27 versus 16% in Q1 FY26.",
+      "kind": "reported",
+      "evidence": [
+        {
+          "source_id": "S03",
+          "quote": "Order book stood at ₹3,900 crore as of 30 June 2026, up from ₹3,150 crore a year ago."
+        },
+        {
+          "source_id": "S03",
+          "quote": "Exports contributed 21% of revenue (Q1 FY26: 16%)."
+        }
+      ]
+    },
+    {
+      "fact_id": "F04",
+      "claim": "The company is expanding cable capacity by approximately 30% through a new plant in Bharuch, Gujarat, which management expects to start commercial production in Q3 FY27.",
+      "kind": "management_expectation",
+      "evidence": [
+        {
+          "source_id": "S03",
+          "quote": "The new Bharuch (Gujarat) plant, adding about 30% to cable capacity, is on track to begin commercial production in Q3 FY27."
+        }
+      ]
+    },
+    {
+      "fact_id": "F05",
+      "claim": "Management maintained full-year FY27 revenue growth guidance of 15% to 17%, expecting the Bharuch facility to contribute in the second half.",
+      "kind": "management_expectation",
+      "evidence": [
+        {
+          "source_id": "S02",
+          "quote": "**Anil Deshpande (MD):** For the full year FY27 we are maintaining our revenue growth guidance of 15 to 17 percent. Bharuch will contribute from the second half."
+        }
+      ]
+    },
+    {
+      "fact_id": "F06",
+      "claim": "Data-centre cables accounted for approximately 9% of domestic revenue in Q1 FY27, with management expecting that share to double in two years.",
+      "kind": "management_expectation",
+      "evidence": [
+        {
+          "source_id": "S02",
+          "quote": "Data-centre cables are now about 9 percent of our domestic revenue, and we think that can double in two years."
+        }
+      ]
+    },
+    {
+      "fact_id": "F07",
+      "claim": "Management stated that about two-thirds of contracts have price-variation clauses resetting with a one-to-two-quarter lag, and expects to pass on copper cost increases over the next two quarters.",
+      "kind": "management_expectation",
+      "evidence": [
+        {
+          "source_id": "S02",
+          "quote": "About two-thirds of our contracts have price-variation clauses, but they reset with a lag of one to two quarters."
+        },
+        {
+          "source_id": "S03",
+          "quote": "Commenting on the results, Managing Director Mr. Anil Deshpande said: \"Demand from power transmission and data-centre projects remains strong. Margins were affected by a sharp rise in copper prices during the quarter, which we expect to pass on to customers over the next two quarters.\""
+        }
+      ]
+    },
+    {
+      "fact_id": "F08",
+      "claim": "Receivable days rose from 78 to 96 over the past year, which management attributed primarily to slower payments from two large state utility customers while stating no defaults have occurred.",
+      "kind": "reported",
+      "evidence": [
+        {
+          "source_id": "S02",
+          "quote": "receivable days increased from 78 to 96 over the last year. That is mainly two large state utility customers, where payments are slower. We are monitoring this closely and have not seen any defaults."
+        }
+      ]
+    },
+    {
+      "fact_id": "F09",
+      "claim": "Total capex for the Bharuch plant is ₹620 crore, of which approximately 70% had been spent by Q1 FY27, funded via internal accruals and term debt, with net debt to equity reported at 0.35 times.",
+      "kind": "reported",
+      "evidence": [
+        {
+          "source_id": "S02",
+          "quote": "Bharuch capex is ₹620 crore in total, about 70 percent already spent. It is funded mainly through internal accruals and some term debt. Net debt to equity is 0.35 times."
+        }
+      ]
+    },
+    {
+      "fact_id": "F10",
+      "claim": "As of 30 June 2026, promoter holding was 58.2%, with pledged promoter shares standing at 4.1% of promoter holding (down from 6.0% in March 2026 and 11.5% in June 2025).",
+      "kind": "reported",
+      "evidence": [
+        {
+          "source_id": "S08",
+          "quote": "| Promoters & promoter group | 58.2% | 58.2% | 58.4% |"
+        },
+        {
+          "source_id": "S08",
+          "quote": "| Of which pledged (as % of promoter holding) | 4.1% | 6.0% | 11.5% |"
+        }
+      ]
+    },
+    {
+      "fact_id": "F11",
+      "claim": "Historically, as of March 2024, secondary news reported promoter pledged shares had risen to 35% from 22% six months prior; this represents a superseded historical position.",
+      "kind": "reported",
+      "evidence": [
+        {
+          "source_id": "S04",
+          "quote": "The promoters of Sarvottam Cables Ltd have increased the share of their holding that is pledged with lenders to 35%, up from 22% six months ago, according to exchange data."
+        }
+      ]
+    },
+    {
+      "fact_id": "F12",
+      "claim": "On 2 September 2026, the company disclosed receipt of a CGST Mumbai demand order of ₹46.3 crore (including interest and penalty) regarding input tax credit claimed for FY2020-21 and FY2021-22.",
+      "kind": "reported",
+      "evidence": [
+        {
+          "source_id": "S07",
+          "quote": "Sarvottam Cables Ltd hereby informs that it has received an order from the office of the Joint Commissioner, CGST, Mumbai, raising a demand of **₹46.3 crore** (including interest and penalty) relating to input tax credit claimed for FY2020-21 and FY2021-22."
+        }
+      ]
+    },
+    {
+      "fact_id": "F13",
+      "claim": "Management stated that the company believes it has a strong case on merits regarding the GST demand, intends to appeal, and does not expect any material impact on operations or financial position.",
+      "kind": "management_expectation",
+      "evidence": [
+        {
+          "source_id": "S07",
+          "quote": "The Company believes it has a strong case on merits, based on legal advice, and intends to file an appeal before the appropriate authority. The Company does not expect any material impact on its financial position or operations."
+        }
+      ]
+    }
+  ],
+  "conflicts": [
+    {
+      "topic": "Q1 FY27 Revenue from Operations and YoY Growth Rate",
+      "source_ids": [
+        "S01",
+        "S03"
+      ],
+      "resolution": "Rely on the official company press release (S03), which reports Q1 FY27 revenue of ₹1,248 crore (an 18.0% YoY increase from ₹1,058 crore). Secondary news article S01 reported ₹1,428 crore (+35%); the cause of this discrepancy is unverified.",
+      "evidence": [
+        {
+          "source_id": "S01",
+          "quote": "Revenue from operations rose to **₹1,428 crore**, a 35% increase from the year-ago period, the company said in an exchange filing on Friday."
+        },
+        {
+          "source_id": "S03",
+          "quote": "| Revenue from operations | 1,248 | 1,058 | +18.0% |"
+        }
+      ]
+    },
+    {
+      "topic": "Promoter Pledging Level (Temporal Update)",
+      "source_ids": [
+        "S04",
+        "S08"
+      ],
+      "resolution": "Temporal update: S04 reported that promoter pledge reached 35% in March 2024. The latest authoritative shareholding filing (S08) shows promoter pledged shares stood at 4.1% of promoter holding as of 30 June 2026 (having declined from 11.5% in June 2025 and 6.0% in March 2026). Use S08 for the current position.",
+      "evidence": [
+        {
+          "source_id": "S04",
+          "quote": "The promoters of Sarvottam Cables Ltd have increased the share of their holding that is pledged with lenders to 35%, up from 22% six months ago, according to exchange data."
+        },
+        {
+          "source_id": "S08",
+          "quote": "| Of which pledged (as % of promoter holding) | 4.1% | 6.0% | 11.5% |"
+        }
+      ]
+    }
+  ]
+}

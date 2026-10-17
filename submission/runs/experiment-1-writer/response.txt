@@ -1,0 +1,70 @@
+{
+  "snapshot": [
+    {
+      "text": "Sarvottam Cables Ltd manufactures power cables, wires, and conductors. For Q1 FY27, official reporting shows revenue from operations rose 18.0% year over year to 1,248 crore rupees, although a secondary news source reported 1,428 crore rupees (35% growth); the company official press release is the preferred source.",
+      "fact_ids": ["F01", "F02"],
+      "conflict_ids": ["C01"]
+    },
+    {
+      "text": "Operating performance for Q1 FY27 saw EBITDA reach 140 crore rupees, up 2.6% year over year, with EBITDA margin contracting 170 basis points to 11.2%, while profit after tax rose 5.9% year over year to 82 crore rupees.",
+      "fact_ids": ["F02"],
+      "conflict_ids": []
+    },
+    {
+      "text": "The company order book stood at 3,900 crore rupees as of 30 June 2026, an increase from 3,150 crore rupees recorded a year earlier.",
+      "fact_ids": ["F03"],
+      "conflict_ids": []
+    }
+  ],
+  "bull_case": [
+    {
+      "text": "Geographic diversification expanded as exports rose to 21% of revenue in Q1 FY27 from 16% in Q1 FY26, alongside domestic niche growth where management projects data-centre cables, currently 9% of domestic sales, could double in two years.",
+      "fact_ids": ["F04", "F07"],
+      "conflict_ids": []
+    },
+    {
+      "text": "Capacity is scheduled to expand by roughly 30% through the new Bharuch plant slated for commercial production in Q3 FY27, supporting management full-year FY27 revenue growth guidance of 15% to 17%.",
+      "fact_ids": ["F05", "F06"],
+      "conflict_ids": []
+    },
+    {
+      "text": "Balance sheet leverage remains contained with net debt to equity at 0.35 times, funding 70% of the 620 crore rupee Bharuch capex primarily via internal accruals alongside term debt, while promoter pledged shares declined to 4.1% of promoter holdings as of 30 June 2026.",
+      "fact_ids": ["F10", "F13"],
+      "conflict_ids": []
+    }
+  ],
+  "bear_case": [
+    {
+      "text": "Working capital stretched as receivable days lengthened from 78 to 96 days over the past year, driven by slower collections from two large state utility customers.",
+      "fact_ids": ["F09"],
+      "conflict_ids": []
+    },
+    {
+      "text": "Operating profitability faces input cost pressure as higher copper prices compressed Q1 FY27 EBITDA margins by 170 basis points, with price-variation clauses on two-thirds of contracts subject to a one-to-two-quarter lag before costs can be passed on.",
+      "fact_ids": ["F02", "F08"],
+      "conflict_ids": []
+    },
+    {
+      "text": "Subsequent liabilities pose balance sheet exposure following a 46.3 crore rupee GST demand order covering input tax credit disputes from FY2020-21 and FY2021-22, which represents a contingent cash outflow notwithstanding management intention to appeal.",
+      "fact_ids": ["F11", "F12"],
+      "conflict_ids": []
+    }
+  ],
+  "open_questions": [
+    {
+      "text": "Why did secondary reporting present Q1 FY27 revenue at 1,428 crore rupees instead of the officially reported 1,248 crore rupees?",
+      "fact_ids": ["F02"],
+      "conflict_ids": ["C01"]
+    },
+    {
+      "text": "When will payment collections from the two state utility customers normalize, and will prolonged receivable cycles require higher working capital debt?",
+      "fact_ids": ["F09", "F10"],
+      "conflict_ids": []
+    },
+    {
+      "text": "Will the planned appeal against the 46.3 crore rupee GST demand succeed, or could an adverse tax adjudication affect cash reserves during the final phase of Bharuch capex?",
+      "fact_ids": ["F10", "F11", "F12"],
+      "conflict_ids": []
+    }
+  ]
+}

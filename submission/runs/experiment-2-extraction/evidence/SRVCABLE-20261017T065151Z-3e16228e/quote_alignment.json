@@ -1,0 +1,21 @@
+{
+  "automatic": true,
+  "changes": [
+    {
+      "location": "F07",
+      "quote_index": 1,
+      "source_id": "S03",
+      "original_quote": "Margi\nns were affected by a sharp rise in copper prices during the quarter, which we expect to pass on to customers over the next two quarters.",
+      "source_paragraph": "Commenting on the results, Managing Director Mr. Anil Deshpande said: \"Demand from power transmission and data-centre projects remains strong. Margins were affected by a sharp rise in copper prices during the quarter, which we expect to pass on to customers over the next two quarters.\"",
+      "coverage": 0.993006993006993
+    },
+    {
+      "location": "F12",
+      "quote_index": 0,
+      "source_id": "S07",
+      "original_quote": "receipt of an order from the office of the Joint Commissioner, CGST, Mumbai, raising a demand of **₹46.3 crore** (including interest and penalty) relating to input tax credit claimed for FY2020-21 and FY2021-22.",
+      "source_paragraph": "Sarvottam Cables Ltd hereby informs that it has received an order from the office of the Joint Commissioner, CGST, Mumbai, raising a demand of **₹46.3 crore** (including interest and penalty) relating to input tax credit claimed for FY2020-21 and FY2021-22.",
+      "coverage": 0.976303317535545
+    }
+  ]
+}

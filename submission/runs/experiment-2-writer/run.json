@@ -1,0 +1,17 @@
+{
+  "status": "complete",
+  "ticker": "SRVCABLE",
+  "company": "Sarvottam Cables Ltd",
+  "as_of": "2026-09-23",
+  "model": "gemini-3.8-flash",
+  "started_at_utc": "2026-10-17T06:54:17.048689+00:00",
+  "writer_version": "writer_v2",
+  "prompt_sha256": "02b30c87fc3929d4f9cd5b784d88b4c639421afc0e17abb635fee1c53358b404",
+  "fresh_extraction": false,
+  "excluded_future_sources": 0,
+  "hand_edited": false,
+  "evidence_directory": "/Users/cyash/PROJECTS/superteam/artifacts/experiments/run-2/research-20261017T065151Z-fa0cb5f6/evidence/SRVCABLE-20261017T065151Z-3e16228e",
+  "evidence_prompt_version": "evidence_v4",
+  "word_count": 435,
+  "completed_at_utc": "2026-10-17T06:54:51.045577+00:00"
+}
