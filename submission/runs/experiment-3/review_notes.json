@@ -1,0 +1,10 @@
+{
+  "review_status": "needs_revision",
+  "issues": [
+    "Business description used an export category as a product; the extraction omitted an explicit business-description fact.",
+    "The phrase higher-value was unsupported.",
+    "Falling margins should not be generalized to falling absolute profits.",
+    "Current promoter pledge data was omitted."
+  ],
+  "next_design": "writer_v4 requires precise business scope, margin language, conditional expansion plans, and current pledge data. Final composition uses the previously reviewed complete evidence ledger from Milestone 5."
+}

@@ -1,0 +1,13 @@
+{
+  "checked_at_utc": "2026-10-17T06:57:06.432884+00:00",
+  "provider": "Google Gemini Developer API",
+  "model": "gemini-3.8-flash",
+  "returned_model": "gemini-3.8-flash",
+  "interaction_id": "",
+  "elapsed_seconds": 57.297,
+  "attempts": 1,
+  "input_tokens": 4527,
+  "output_tokens": 3081,
+  "thought_tokens": 6527,
+  "total_tokens": 14135
+}

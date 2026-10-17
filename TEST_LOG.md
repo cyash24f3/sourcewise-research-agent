@@ -43,8 +43,20 @@ These are real API runs, not mocked test fixtures.
 - Writer changes: target 280–340 words, include the business in a short Snapshot,
   move the conflicting revenue figure to Open questions, preserve spending versus
   funding relationships, and forbid unsupported inverse-contract/appeal-status claims.
-- Final metrics and review are recorded in `submission/runs/experiment-3/` and
-  `submission/final_review.json` after completion.
+- Completed in two fresh API stages with **361 words**. The recorded run passed
+  mechanical checks. Review still found unsupported product wording/adjectives,
+  broad profit language where only margins narrowed, and omitted current pledging.
+- Preserved in `submission/runs/experiment-3/`; the brief is not the final submission.
+
+## Final composition — semantic precision
+
+- `writer_v4.md` adds explicit business-scope, margin-versus-profit, conditional
+  expansion, and current-pledge requirements.
+- Reuses the complete, previously reviewed Milestone 5 evidence ledger, which
+  explicitly includes the business description. A new writer API call generates
+  the final narrative. This is an additional composition, not another fresh extraction.
+- `submission/runs/final-composition/` preserves the input, prompt, receipt, raw
+  response and final output; `submission/final_review.json` records the scoped review.
 
 ## Earlier evidence-stage development
 

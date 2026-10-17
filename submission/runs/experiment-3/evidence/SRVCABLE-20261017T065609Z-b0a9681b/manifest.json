@@ -1,0 +1,105 @@
+{
+  "as_of": "2026-09-23",
+  "eligible_count": 8,
+  "excluded_future_count": 0,
+  "total_bytes": 7326,
+  "source_assessment": "pending",
+  "sources": [
+    {
+      "source_id": "S01",
+      "filename": "businessdaily_2026-08-09.md",
+      "source": "Business Daily Online (news website)",
+      "url": "https://businessdaily.example/markets/sarvottam-cables-q1-results",
+      "published": "2026-08-09",
+      "source_type": "news article",
+      "sha256": "8278619944f770490194b470c89c50283820c6abbb1b75872b240d6fb17dfdaf",
+      "size_bytes": 980,
+      "body_characters": 805,
+      "status": "eligible"
+    },
+    {
+      "source_id": "S02",
+      "filename": "ir_concall_2026-08-11.md",
+      "source": "Q1 FY27 earnings call transcript (excerpt), hosted on company IR site",
+      "url": "https://ir.sarvottamcables.example/transcripts/q1fy27.pdf",
+      "published": "2026-08-11",
+      "source_type": "official company transcript",
+      "sha256": "40c744245b48e7807462116ad1f49c2131bcdd0e97306a9f726b16a1d6b250ba",
+      "size_bytes": 1431,
+      "body_characters": 1222,
+      "status": "eligible"
+    },
+    {
+      "source_id": "S03",
+      "filename": "ir_press_release_2026-08-08.md",
+      "source": "Sarvottam Cables Ltd, investor relations (company press release)",
+      "url": "https://ir.sarvottamcables.example/press/q1fy27",
+      "published": "2026-08-08",
+      "source_type": "official company filing",
+      "sha256": "7a3ddafe40703aa025ed0c5e91f308a2751d99866d669cabb9151929bb8228f4",
+      "size_bytes": 1345,
+      "body_characters": 1149,
+      "status": "eligible"
+    },
+    {
+      "source_id": "S04",
+      "filename": "marketwatchindia_2024-03-18.md",
+      "source": "Market Watch India (news website)",
+      "url": "https://marketwatchindia.example/2024/03/sarvottam-promoter-pledge",
+      "published": "2024-03-18",
+      "source_type": "news article",
+      "sha256": "d5f7b3174de80ae62db49bf70592b1161d982999fcf2f0ef92db8fdc82674f07",
+      "size_bytes": 626,
+      "body_characters": 461,
+      "status": "eligible"
+    },
+    {
+      "source_id": "S05",
+      "filename": "multibaggeralerts_2026-08-12.md",
+      "source": "MultibaggerAlertsIndia (stock tips blog)",
+      "url": "https://multibaggeralerts.example/srvcable-strong-buy",
+      "published": "2026-08-12",
+      "source_type": "blog post",
+      "sha256": "041368bf32b3758c0b4c2f2662036759ab789c833ca701ff3607ffd73629e1bd",
+      "size_bytes": 873,
+      "body_characters": 703,
+      "status": "eligible"
+    },
+    {
+      "source_id": "S06",
+      "filename": "nagpurcitytimes_2026-08-20.md",
+      "source": "Nagpur City Times (local news website)",
+      "url": "https://nagpurcitytimes.example/news/sarvottam-cable-network-penalty",
+      "published": "2026-08-20",
+      "source_type": "news article",
+      "sha256": "83ee54ae56b8d0d21cccd3dcbface1b333fb687071898d5da034a02da95d5fe2",
+      "size_bytes": 715,
+      "body_characters": 539,
+      "status": "eligible"
+    },
+    {
+      "source_id": "S07",
+      "filename": "nse_announcement_2026-09-02.md",
+      "source": "NSE corporate announcement (company disclosure)",
+      "url": "https://nse.example/announcements/SRVCABLE/2026-09-02",
+      "published": "2026-09-02",
+      "source_type": "official exchange filing",
+      "sha256": "9ebee20362a4fa7e45706fbe3a5018062bb2befc2fa43708fb93de0483f70c13",
+      "size_bytes": 757,
+      "body_characters": 577,
+      "status": "eligible"
+    },
+    {
+      "source_id": "S08",
+      "filename": "nse_shareholding_2026-07-15.md",
+      "source": "NSE shareholding pattern filing (summary)",
+      "url": "https://nse.example/shareholding/SRVCABLE/2026-06",
+      "published": "2026-07-15",
+      "source_type": "official exchange filing",
+      "sha256": "95513aaf420d46fef490c5e1c9d264f679790d7b71dbb7e1faf870f2e55f0a28",
+      "size_bytes": 599,
+      "body_characters": 431,
+      "status": "eligible"
+    }
+  ]
+}

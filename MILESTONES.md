@@ -12,9 +12,9 @@ draft code alone does not make a later milestone complete.
 | 5 | Assess sources and extract evidence | Complete |
 | 6 | Generate the research brief | Complete |
 | 7 | Validate output and handle failures | Complete |
-| 8 | Run three experiments and improve it | Final fresh run in progress |
-| 9 | Prepare the build for submission | Packaging and publication in progress |
-| 10 | Record the demo and prepare form answers | Live demo recording in progress |
+| 8 | Run three experiments and improve it | Complete; three experiments plus final composition |
+| 9 | Prepare the build for submission | Complete; public GitHub repository |
+| 10 | Record the demo and prepare form answers | Complete; public recording and ready-to-paste answers |
 
 ## Milestone 1
 
@@ -197,3 +197,17 @@ brief runs required by the assignment.
 
 Full semantic entailment remains a known limitation; exact quotations and numeric
 presence cannot prove that a model interpreted every relationship correctly.
+
+Final completion:
+
+- Three real research experiments completed (two resumed after recorded quote failures),
+  followed by a final writer_v4 composition using the complete reviewed evidence ledger.
+- Final brief: 314 narrative words, unchanged from pipeline output; review notes and
+  every selected run are in `submission/`.
+- Build: https://github.com/cyash24f3/sourcewise-research-agent
+- Recording: https://drive.google.com/file/d/17gT_gOsWWC8RmR1kozjdQ9QOLTF2NcjY/view
+- Recording verified locally: 140.07 seconds, H.264 MP4, 1360 × 900, captioned live
+  application-surface capture. It shows the third experiment; final composition followed.
+- Drive permission readback confirms `anyone` / `reader`, undiscoverable by search.
+- GitHub and the Drive recording opened in a signed-out browser.
+- Form answers are prepared. No final form submission was made on the user's behalf.

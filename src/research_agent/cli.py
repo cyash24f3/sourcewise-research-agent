@@ -116,7 +116,9 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--project-dir", type=Path, default=Path.cwd())
     run.add_argument("--output-root", type=Path)
     run.add_argument(
-        "--writer-version", choices=["writer_v1", "writer_v2", "writer_v3"], default="writer_v3"
+        "--writer-version",
+        choices=["writer_v1", "writer_v2", "writer_v3", "writer_v4"],
+        default="writer_v4",
     )
     run.add_argument(
         "--evidence-run",

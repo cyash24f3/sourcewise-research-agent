@@ -31,7 +31,7 @@ def execute():
         "--project-dir",
         str(ROOT),
         "--writer-version",
-        "writer_v3",
+        "writer_v4",
         "--output-root",
         str(ROOT / "artifacts/demo"),
     ]

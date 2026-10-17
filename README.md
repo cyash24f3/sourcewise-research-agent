@@ -49,7 +49,7 @@ one design decision, and a limitation. It contains no fixture model response.
    evidence, validation results, and Markdown. Failures are retained rather than hidden.
 
 Separate system prompts are in `src/research_agent/prompts/`. Active prompts are
-`evidence_v4.md` and `writer_v3.md`; earlier versions are preserved for the test log.
+`evidence_v4.md` and `writer_v4.md`; earlier versions are preserved for the test log.
 
 ### Quote alignment
 
@@ -97,7 +97,7 @@ key itself. `test-api` makes a small live acknowledgement request. `run` makes t
 logical requests; transport errors have one bounded retry layer (at most three
 HTTP sends per request). Authentication/access failures stop immediately. Each
 research request has a 180-second timeout per attempt. There is no automatic
-semantic retry loop. `--writer-version writer_v1|writer_v2|writer_v3` supports the
+semantic retry loop. `--writer-version writer_v1|writer_v2|writer_v3|writer_v4` supports the
 recorded experiments. `--evidence-run <directory>` reuses saved evidence only after
 checking the target, company, date, and document hashes and revalidating its ledger.
 
