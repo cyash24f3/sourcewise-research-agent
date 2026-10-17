@@ -26,7 +26,7 @@ def load_settings(project_dir: Path, *, require_key: bool = True) -> GeminiSetti
         # Disable variable expansion: do not accidentally reinterpret characters in a key.
         local = dotenv_values(env_path, interpolate=False) if env_path.is_file() else {}
     except OSError as exc:
-        raise ConfigurationError("Cannot read the project's .env file.") from exc
+        raise ConfigurationError("Cannot read the local .env file.") from exc
 
     key, source = "", "not configured"
     for values, location in ((os.environ, "environment"), (local, ".env")):
@@ -41,11 +41,11 @@ def load_settings(project_dir: Path, *, require_key: bool = True) -> GeminiSetti
     model = model.strip()
     if model != GEMINI_MODEL:
         raise ConfigurationError(
-            f"Set GEMINI_MODEL={GEMINI_MODEL}; this milestone uses the selected model only."
+            f"Set GEMINI_MODEL={GEMINI_MODEL}; this build uses the selected model."
         )
     if require_key and not key:
         raise ConfigurationError(
-            "Gemini API key missing. Add GEMINI_API_KEY to the project's .env file "
+            "Gemini API key missing. Add GEMINI_API_KEY to the local .env file "
             "or set it in the environment. Keep the key out of chat and Git."
         )
     return GeminiSettings(api_key=key, key_source=source, model=model)

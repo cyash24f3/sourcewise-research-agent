@@ -6,7 +6,6 @@ import re
 import uuid
 from dataclasses import asdict, dataclass
 from datetime import date, datetime, timezone
-from difflib import SequenceMatcher
 from importlib.resources import files
 from pathlib import Path
 
@@ -17,9 +16,9 @@ from .documents import DocumentError, build_manifest, load_documents
 from .gemini import ConnectionReceipt, GeminiRequestError, generate_text
 from .models import EvidenceLedger
 from .render import plain
-from .validation import ValidationFailure, normalize, validate_ledger
+from .validation import ValidationFailure, validate_ledger
 
-EVIDENCE_PROMPT_VERSION = "evidence_v4"
+EVIDENCE_PROMPT_VERSION = "evidence_v5"
 
 
 class ExtractionFailure(RuntimeError):
@@ -39,54 +38,18 @@ def write_json(path: Path, value: dict) -> None:
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def align_quotations(ledger: EvidenceLedger, docs: list) -> list[dict]:
-    """Recover near-verbatim long quotes from one unambiguous source paragraph.
-
-    Only excerpts change, never claims or IDs. All changes retain before/after text;
-    the usual exact-quote and numeric checks still run after alignment.
-    """
-    sources = {doc.source_id: doc for doc in docs}
-    excluded = {d.source_id for d in ledger.source_decisions if d.disposition == "exclude"}
-    changes = []
-    entries = [(fact.fact_id, fact.evidence) for fact in ledger.facts]
-    entries += [(f"C{i:02}", c.evidence) for i, c in enumerate(ledger.conflicts, 1)]
-    for label, quotes in entries:
-        for index, item in enumerate(quotes):
-            if item.source_id not in sources or item.source_id in excluded:
-                continue
-            body = sources[item.source_id].body
-            quote = normalize(item.quote)
-            if quote in normalize(body) or len(quote) < 80:
-                continue
-            candidates = []
-            for paragraph in re.split(r"\n\s*\n", body):
-                candidate = normalize(paragraph)
-                matcher = SequenceMatcher(None, quote, candidate, autojunk=False)
-                coverage = sum(block.size for block in matcher.get_matching_blocks()) / len(quote)
-                if coverage >= 0.94 and len(candidate) <= len(quote) * 3:
-                    candidates.append((coverage, paragraph))
-            if len(candidates) == 1:
-                before = item.quote
-                item.quote = candidates[0][1]
-                changes.append(
-                    {
-                        "location": label,
-                        "quote_index": index,
-                        "source_id": item.source_id,
-                        "original_quote": before,
-                        "source_paragraph": item.quote,
-                        "coverage": candidates[0][0],
-                    }
-                )
-    return changes
+def save_reply(folder: Path, receipt: ConnectionReceipt, prefix: str = "") -> None:
+    (folder / f"{prefix}response.txt").write_text(receipt.response + "\n", encoding="utf-8")
+    metadata = asdict(receipt)
+    metadata.pop("response")
+    write_json(folder / f"{prefix}receipt.json", metadata)
 
 
 def render_evidence(ledger, docs, ticker: str, as_of: date) -> str:
     sources = {doc.source_id: doc for doc in docs}
     lines = [f"# {plain(ticker)} — evidence review", "", f"As of {as_of.isoformat()}", ""]
     lines += [
-        "Exact source excerpts have passed local checks. Source decisions and claim meaning",
-        "are model judgements; quote matching does not prove that every inference is correct.",
+        "Quotes match the source files. A model still needs to check what they mean.",
         "",
         "## Source decisions",
         "",
@@ -181,6 +144,8 @@ def extract_evidence(
         "excluded_future_sources": len(future),
     }
     write_json(folder / "run.json", run)
+    receipts = []
+    active_prefix = ""
     try:
         receipt = generate_text(
             settings,
@@ -192,21 +157,42 @@ def extract_evidence(
             max_output_tokens=20000,
             timeout_seconds=180,
         )
-        (folder / "response.txt").write_text(receipt.response + "\n", encoding="utf-8")
-        metadata = asdict(receipt)
-        metadata.pop("response")
-        write_json(folder / "receipt.json", metadata)
+        receipts.append(receipt)
+        save_reply(folder, receipt)
         ledger = EvidenceLedger.model_validate_json(receipt.response)
-        alignments = align_quotations(ledger, docs)
-        if alignments:
-            write_json(folder / "quote_alignment.json", {"automatic": True, "changes": alignments})
-        validate_ledger(ledger, docs)
+        try:
+            validate_ledger(ledger, docs)
+        except ValidationFailure as exc:
+            if not any(
+                "quote not found verbatim" in error or "numeric claims absent" in error
+                for error in exc.errors
+            ):
+                raise
+            write_json(folder / "initial_validation.json", {"passed": False, "errors": exc.errors})
+            print(
+                "Evidence check found an error. Asking the model to correct it once...", flush=True
+            )
+            active_prefix = "repair_"
+            repair_input = dict(
+                payload, previous_output=receipt.response, validation_errors=exc.errors
+            )
+            receipt = generate_text(
+                settings,
+                prompt=json.dumps(repair_input, ensure_ascii=False),
+                system_instruction=prompt,
+                schema=schema,
+                client_factory=client_factory,
+                thinking_level="medium",
+                max_output_tokens=20000,
+                timeout_seconds=180,
+            )
+            receipts.append(receipt)
+            save_reply(folder, receipt, active_prefix)
+            ledger = EvidenceLedger.model_validate_json(receipt.response)
+            validate_ledger(ledger, docs)
     except (GeminiRequestError, ValidationError, ValidationFailure) as exc:
         if isinstance(exc, GeminiRequestError) and exc.receipt is not None:
-            (folder / "response.txt").write_text(exc.receipt.response + "\n", encoding="utf-8")
-            metadata = asdict(exc.receipt)
-            metadata.pop("response")
-            write_json(folder / "receipt.json", metadata)
+            save_reply(folder, exc.receipt, active_prefix)
             write_json(folder / "diagnostics.json", exc.diagnostics or {})
         if isinstance(exc, ValidationError):
             errors = ["Model JSON failed the evidence schema."]
@@ -239,6 +225,8 @@ def extract_evidence(
         },
     )
     run["status"] = "validated"
+    run["model_correction_calls"] = len(receipts) - 1
+    run["accepted_response"] = f"{active_prefix}response.txt"
     run["completed_at_utc"] = datetime.now(timezone.utc).isoformat()
     write_json(folder / "run.json", run)
     return EvidenceRun(folder, ledger, receipt)

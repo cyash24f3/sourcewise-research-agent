@@ -62,8 +62,8 @@ def safe_request_error(exc: Exception) -> GeminiRequestError:
         status = None
     messages = {
         400: "Gemini rejected the request. Check the API key and the installed SDK version.",
-        401: "Gemini authentication failed. Check the API key in the project's .env file.",
-        403: "Gemini access denied. Check the key's permissions, project, and region eligibility.",
+        401: "Gemini authentication failed. Check the API key in the local .env file.",
+        403: "Gemini access denied. Check permissions on the key, project, and region eligibility.",
         404: "Gemini 3.8 Flash is unavailable to this project or API endpoint. "
         "No model was substituted.",
         408: "Gemini request timed out. Try again after checking the network.",

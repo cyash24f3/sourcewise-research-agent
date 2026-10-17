@@ -183,5 +183,337 @@
         "semantic_entailment_verified": false
       }
     }
+  },
+  {
+    "experiment": 5,
+    "review_status": "blocked_by_local_checks",
+    "writer": {
+      "status": "failed",
+      "model": "gemini-3.8-flash",
+      "started_at_utc": "2026-10-17T07:47:12.996882+00:00",
+      "writer_version": "writer_v5",
+      "prompt_sha256": "2809055ad7701bb6d6b3d934bebfccf1cb9b2a9900f31b36d6041df564a97ac8",
+      "fresh_extraction": true,
+      "excluded_future_sources": 0,
+      "hand_edited": false,
+      "evidence_prompt_version": "evidence_v5",
+      "error": "Snapshot: numeric claim absent from referenced evidence.; Snapshot: numeric claim absent from referenced evidence.; Bull case: numeric claim absent from referenced evidence.",
+      "completed_at_utc": "2026-10-17T07:49:41.264747+00:00",
+      "validation": {
+        "passed": false,
+        "error": "Snapshot: numeric claim absent from referenced evidence.; Snapshot: numeric claim absent from referenced evidence.; Bull case: numeric claim absent from referenced evidence."
+      },
+      "receipts": [
+        {
+          "checked_at_utc": "2026-10-17T07:49:41.262329+00:00",
+          "provider": "Google Gemini Developer API",
+          "model": "gemini-3.8-flash",
+          "returned_model": "gemini-3.8-flash",
+          "interaction_id": "",
+          "elapsed_seconds": 50.564,
+          "attempts": 1,
+          "input_tokens": 3737,
+          "output_tokens": 719,
+          "thought_tokens": 7386,
+          "total_tokens": 11842
+        }
+      ]
+    },
+    "extraction": {
+      "status": "validated",
+      "stage": "evidence_extraction",
+      "model": "gemini-3.8-flash",
+      "started_at_utc": "2026-10-17T07:47:12.998700+00:00",
+      "prompt_version": "evidence_v5",
+      "prompt_sha256": "7e40bce7efb5004f53e4649cf5360eaaee438e50fc58eaade28eb12b2c77d5f5",
+      "thinking_level": "medium",
+      "max_output_tokens": 20000,
+      "timeout_seconds": 180,
+      "eligible_sources": 8,
+      "excluded_future_sources": 0,
+      "model_correction_calls": 1,
+      "accepted_response": "repair_response.txt",
+      "completed_at_utc": "2026-10-17T07:48:50.691796+00:00",
+      "validation": {
+        "passed": true,
+        "schema_valid": true,
+        "exact_quotes_verified": true,
+        "numeric_source_checks": true,
+        "source_decisions_complete": true,
+        "semantic_entailment_verified": false,
+        "fact_count": 15,
+        "conflict_count": 2
+      },
+      "receipts": [
+        {
+          "checked_at_utc": "2026-10-17T07:48:18.996811+00:00",
+          "provider": "Google Gemini Developer API",
+          "model": "gemini-3.8-flash",
+          "returned_model": "gemini-3.8-flash",
+          "interaction_id": "",
+          "elapsed_seconds": 65.996,
+          "attempts": 1,
+          "input_tokens": 3658,
+          "output_tokens": 3290,
+          "thought_tokens": 7496,
+          "total_tokens": 14444
+        },
+        {
+          "checked_at_utc": "2026-10-17T07:48:50.687396+00:00",
+          "provider": "Google Gemini Developer API",
+          "model": "gemini-3.8-flash",
+          "returned_model": "gemini-3.8-flash",
+          "interaction_id": "",
+          "elapsed_seconds": 31.682,
+          "attempts": 1,
+          "input_tokens": 7128,
+          "output_tokens": 3430,
+          "thought_tokens": 2197,
+          "total_tokens": 12755
+        }
+      ],
+      "initial_validation": {
+        "passed": false,
+        "errors": [
+          "F13: numeric claims absent from cited sources: 30. Cite every source needed for the complete claim."
+        ]
+      }
+    }
+  },
+  {
+    "experiment": 6,
+    "review_status": "accepted_fresh_run",
+    "writer": {
+      "status": "complete",
+      "model": "gemini-3.8-flash",
+      "started_at_utc": "2026-10-17T07:50:48.312831+00:00",
+      "writer_version": "writer_v5",
+      "prompt_sha256": "dbedad60f00ccc74e3a23589cd1531fb54dd0cb588fac6fadc62f7480a9a2787",
+      "fresh_extraction": true,
+      "excluded_future_sources": 0,
+      "hand_edited": false,
+      "evidence_prompt_version": "evidence_v5",
+      "word_count": 265,
+      "review_version": "review_v1",
+      "completed_at_utc": "2026-10-17T07:53:32.709153+00:00",
+      "validation": {
+        "passed": true,
+        "word_count": 265,
+        "max_words": 450,
+        "source_excerpts_matched": true,
+        "references_known": true,
+        "numeric_source_checks": true,
+        "model_review_passed": true,
+        "semantic_entailment_verified": false
+      },
+      "receipts": [
+        {
+          "checked_at_utc": "2026-10-17T07:52:59.895738+00:00",
+          "provider": "Google Gemini Developer API",
+          "model": "gemini-3.8-flash",
+          "returned_model": "gemini-3.8-flash",
+          "interaction_id": "",
+          "elapsed_seconds": 39.504,
+          "attempts": 1,
+          "input_tokens": 3777,
+          "output_tokens": 828,
+          "thought_tokens": 5436,
+          "total_tokens": 10041
+        }
+      ]
+    },
+    "extraction": {
+      "status": "validated",
+      "stage": "evidence_extraction",
+      "model": "gemini-3.8-flash",
+      "started_at_utc": "2026-10-17T07:50:48.314743+00:00",
+      "prompt_version": "evidence_v5",
+      "prompt_sha256": "0352715f29a07525613f0514c4ad7c9957154c3dd369e2dadbb18f99a501a2a7",
+      "thinking_level": "medium",
+      "max_output_tokens": 20000,
+      "timeout_seconds": 180,
+      "eligible_sources": 8,
+      "excluded_future_sources": 0,
+      "model_correction_calls": 1,
+      "accepted_response": "repair_response.txt",
+      "completed_at_utc": "2026-10-17T07:52:20.387258+00:00",
+      "validation": {
+        "passed": true,
+        "schema_valid": true,
+        "exact_quotes_verified": true,
+        "numeric_source_checks": true,
+        "source_decisions_complete": true,
+        "semantic_entailment_verified": false,
+        "fact_count": 13,
+        "conflict_count": 2
+      },
+      "receipts": [
+        {
+          "checked_at_utc": "2026-10-17T07:51:48.908818+00:00",
+          "provider": "Google Gemini Developer API",
+          "model": "gemini-3.8-flash",
+          "returned_model": "gemini-3.8-flash",
+          "interaction_id": "",
+          "elapsed_seconds": 60.591,
+          "attempts": 1,
+          "input_tokens": 3693,
+          "output_tokens": 3353,
+          "thought_tokens": 6483,
+          "total_tokens": 13529
+        },
+        {
+          "checked_at_utc": "2026-10-17T07:52:20.383469+00:00",
+          "provider": "Google Gemini Developer API",
+          "model": "gemini-3.8-flash",
+          "returned_model": "gemini-3.8-flash",
+          "interaction_id": "",
+          "elapsed_seconds": 31.471,
+          "attempts": 1,
+          "input_tokens": 7226,
+          "output_tokens": 3399,
+          "thought_tokens": 2157,
+          "total_tokens": 12782
+        }
+      ],
+      "initial_validation": {
+        "passed": false,
+        "errors": [
+          "F12: numeric claims absent from cited sources: 30. Cite every source needed for the complete claim."
+        ]
+      }
+    },
+    "review": {
+      "checked_at_utc": "2026-10-17T07:53:32.703002+00:00",
+      "provider": "Google Gemini Developer API",
+      "model": "gemini-3.8-flash",
+      "returned_model": "gemini-3.8-flash",
+      "interaction_id": "",
+      "elapsed_seconds": 32.801,
+      "attempts": 1,
+      "input_tokens": 6906,
+      "output_tokens": 1988,
+      "thought_tokens": 3099,
+      "total_tokens": 11993
+    }
+  },
+  {
+    "experiment": 7,
+    "review_status": "selected_submission",
+    "writer": {
+      "status": "complete",
+      "model": "gemini-3.8-flash",
+      "started_at_utc": "2026-10-17T08:15:58.544170+00:00",
+      "writer_version": "writer_v5",
+      "prompt_sha256": "3fe25cd78ac322e25326a842d16734075242a4a5d4c96be23168c3bc1fdc378c",
+      "fresh_extraction": false,
+      "excluded_future_sources": 0,
+      "hand_edited": false,
+      "evidence_prompt_version": "evidence_v5",
+      "word_count": 269,
+      "review_version": "review_v1",
+      "completed_at_utc": "2026-10-17T08:17:11.834091+00:00",
+      "validation": {
+        "passed": true,
+        "word_count": 269,
+        "max_words": 450,
+        "source_excerpts_matched": true,
+        "references_known": true,
+        "numeric_source_checks": true,
+        "model_review_passed": true,
+        "semantic_entailment_verified": false
+      },
+      "receipts": [
+        {
+          "checked_at_utc": "2026-10-17T08:16:43.115591+00:00",
+          "provider": "Google Gemini Developer API",
+          "model": "gemini-3.8-flash",
+          "returned_model": "gemini-3.8-flash",
+          "interaction_id": "",
+          "elapsed_seconds": 44.569,
+          "attempts": 1,
+          "input_tokens": 3848,
+          "output_tokens": 754,
+          "thought_tokens": 6343,
+          "total_tokens": 10945
+        }
+      ]
+    },
+    "reused_evidence_from_experiment": 6,
+    "review": {
+      "checked_at_utc": "2026-10-17T08:17:11.826808+00:00",
+      "provider": "Google Gemini Developer API",
+      "model": "gemini-3.8-flash",
+      "returned_model": "gemini-3.8-flash",
+      "interaction_id": "",
+      "elapsed_seconds": 28.705,
+      "attempts": 1,
+      "input_tokens": 6912,
+      "output_tokens": 1816,
+      "thought_tokens": 3019,
+      "total_tokens": 11747
+    }
+  },
+  {
+    "experiment": "wrong_metric_probe",
+    "source": "Revenue was 100 crore rupees. Capital expenditure was 900 crore rupees.",
+    "claim": "Revenue was 900 crore rupees.",
+    "local_numeric_check": "passed: the quote contained 900",
+    "model_review": {
+      "source_checks": [
+        {
+          "source_id": "S01",
+          "supported": true,
+          "reason": "The document is an official filing dated September 2026 for the relevant entity and the stated reason to use it is sound."
+        }
+      ],
+      "conflict_checks": [],
+      "fact_checks": [
+        {
+          "fact_id": "F01",
+          "supported": false,
+          "reason": "The cited text indicates revenue was 100 crore rupees and 900 crore rupees was capital expenditure."
+        }
+      ],
+      "brief_checks": [
+        {
+          "section": "snapshot",
+          "point_index": 0,
+          "supported": false,
+          "reason": "Revenue was 100 crore rupees rather than 900 crore rupees."
+        },
+        {
+          "section": "bull_case",
+          "point_index": 0,
+          "supported": false,
+          "reason": "Revenue was 100 crore rupees rather than 900 crore rupees."
+        },
+        {
+          "section": "bear_case",
+          "point_index": 0,
+          "supported": false,
+          "reason": "Revenue was 100 crore rupees rather than 900 crore rupees."
+        },
+        {
+          "section": "open_questions",
+          "point_index": 0,
+          "supported": false,
+          "reason": "The entry asserts an incorrect revenue figure that contradicts the source text."
+        }
+      ]
+    },
+    "receipt": {
+      "checked_at_utc": "2026-10-17T08:16:51.386183+00:00",
+      "provider": "Google Gemini Developer API",
+      "model": "gemini-3.8-flash",
+      "returned_model": "gemini-3.8-flash",
+      "interaction_id": "",
+      "elapsed_seconds": 14.573,
+      "attempts": 1,
+      "input_tokens": 794,
+      "output_tokens": 374,
+      "thought_tokens": 748,
+      "total_tokens": 1916
+    },
+    "rejected": true
   }
 ]

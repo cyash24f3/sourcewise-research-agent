@@ -1,0 +1,742 @@
+{
+  "ticker": "SRVCABLE",
+  "company": "Sarvottam Cables Ltd",
+  "as_of": "2026-09-23",
+  "model": "gemini-3.8-flash",
+  "prompts": {
+    "evidence": "evidence_v5",
+    "writer": "writer_v5",
+    "review": "review_v1"
+  },
+  "source_files": [
+    {
+      "source_id": "S01",
+      "filename": "businessdaily_2026-08-09.md",
+      "source": "Business Daily Online (news website)",
+      "url": "https://businessdaily.example/markets/sarvottam-cables-q1-results",
+      "published": "2026-08-09",
+      "source_type": "news article",
+      "sha256": "8278619944f770490194b470c89c50283820c6abbb1b75872b240d6fb17dfdaf",
+      "size_bytes": 980
+    },
+    {
+      "source_id": "S02",
+      "filename": "ir_concall_2026-08-11.md",
+      "source": "Q1 FY27 earnings call transcript (excerpt), hosted on company IR site",
+      "url": "https://ir.sarvottamcables.example/transcripts/q1fy27.pdf",
+      "published": "2026-08-11",
+      "source_type": "official company transcript",
+      "sha256": "40c744245b48e7807462116ad1f49c2131bcdd0e97306a9f726b16a1d6b250ba",
+      "size_bytes": 1431
+    },
+    {
+      "source_id": "S03",
+      "filename": "ir_press_release_2026-08-08.md",
+      "source": "Sarvottam Cables Ltd, investor relations (company press release)",
+      "url": "https://ir.sarvottamcables.example/press/q1fy27",
+      "published": "2026-08-08",
+      "source_type": "official company filing",
+      "sha256": "7a3ddafe40703aa025ed0c5e91f308a2751d99866d669cabb9151929bb8228f4",
+      "size_bytes": 1345
+    },
+    {
+      "source_id": "S04",
+      "filename": "marketwatchindia_2024-03-18.md",
+      "source": "Market Watch India (news website)",
+      "url": "https://marketwatchindia.example/2024/03/sarvottam-promoter-pledge",
+      "published": "2024-03-18",
+      "source_type": "news article",
+      "sha256": "d5f7b3174de80ae62db49bf70592b1161d982999fcf2f0ef92db8fdc82674f07",
+      "size_bytes": 626
+    },
+    {
+      "source_id": "S05",
+      "filename": "multibaggeralerts_2026-08-12.md",
+      "source": "MultibaggerAlertsIndia (stock tips blog)",
+      "url": "https://multibaggeralerts.example/srvcable-strong-buy",
+      "published": "2026-08-12",
+      "source_type": "blog post",
+      "sha256": "041368bf32b3758c0b4c2f2662036759ab789c833ca701ff3607ffd73629e1bd",
+      "size_bytes": 873
+    },
+    {
+      "source_id": "S06",
+      "filename": "nagpurcitytimes_2026-08-20.md",
+      "source": "Nagpur City Times (local news website)",
+      "url": "https://nagpurcitytimes.example/news/sarvottam-cable-network-penalty",
+      "published": "2026-08-20",
+      "source_type": "news article",
+      "sha256": "83ee54ae56b8d0d21cccd3dcbface1b333fb687071898d5da034a02da95d5fe2",
+      "size_bytes": 715
+    },
+    {
+      "source_id": "S07",
+      "filename": "nse_announcement_2026-09-02.md",
+      "source": "NSE corporate announcement (company disclosure)",
+      "url": "https://nse.example/announcements/SRVCABLE/2026-09-02",
+      "published": "2026-09-02",
+      "source_type": "official exchange filing",
+      "sha256": "9ebee20362a4fa7e45706fbe3a5018062bb2befc2fa43708fb93de0483f70c13",
+      "size_bytes": 757
+    },
+    {
+      "source_id": "S08",
+      "filename": "nse_shareholding_2026-07-15.md",
+      "source": "NSE shareholding pattern filing (summary)",
+      "url": "https://nse.example/shareholding/SRVCABLE/2026-06",
+      "published": "2026-07-15",
+      "source_type": "official exchange filing",
+      "sha256": "95513aaf420d46fef490c5e1c9d264f679790d7b71dbb7e1faf870f2e55f0a28",
+      "size_bytes": 599
+    }
+  ],
+  "ledger": {
+    "source_decisions": [
+      {
+        "source_id": "S01",
+        "disposition": "context_only",
+        "reason": "Secondary news article reporting Q1 financial metrics that conflict with the official company press release."
+      },
+      {
+        "source_id": "S02",
+        "disposition": "use",
+        "reason": "Official earnings conference call transcript providing management guidance, balance sheet and operational details."
+      },
+      {
+        "source_id": "S03",
+        "disposition": "use",
+        "reason": "Official company press release disclosing Q1 FY27 financial and operational results."
+      },
+      {
+        "source_id": "S04",
+        "disposition": "context_only",
+        "reason": "Dated news article from March 2024 on promoter pledging, superseded by newer exchange filings."
+      },
+      {
+        "source_id": "S05",
+        "disposition": "exclude",
+        "reason": "Stock tip promotional blog containing instructions directing artificial intelligence assistants."
+      },
+      {
+        "source_id": "S06",
+        "disposition": "exclude",
+        "reason": "News report concerning an unrelated local cable television and broadband provider."
+      },
+      {
+        "source_id": "S07",
+        "disposition": "use",
+        "reason": "Official stock exchange regulatory filing reporting a tax demand order."
+      },
+      {
+        "source_id": "S08",
+        "disposition": "use",
+        "reason": "Official stock exchange filing disclosing the shareholding pattern as of 30 June 2026."
+      }
+    ],
+    "facts": [
+      {
+        "fact_id": "F01",
+        "claim": "Sarvottam Cables Ltd is a manufacturer of power cables, wires and conductors.",
+        "kind": "reported",
+        "evidence": [
+          {
+            "source_id": "S03",
+            "quote": "Sarvottam Cables Ltd (NSE: SRVCABLE), a manufacturer of power cables, wires and conductors, today announced results for the quarter ended 30 June 2026."
+          }
+        ]
+      },
+      {
+        "fact_id": "F02",
+        "claim": "For the quarter ended 30 June 2026, revenue from operations reached 1,248 crore rupees, an increase of 18.0 percent year over year, while profit after tax was 82 crore rupees, up 5.9 percent.",
+        "kind": "reported",
+        "evidence": [
+          {
+            "source_id": "S03",
+            "quote": "quarter ended 30 June 2026."
+          },
+          {
+            "source_id": "S03",
+            "quote": "| ₹ crore | Q1 FY27 | Q1 FY26 | YoY |"
+          },
+          {
+            "source_id": "S03",
+            "quote": "| Revenue from operations | 1,248 | 1,058 | +18.0% |"
+          },
+          {
+            "source_id": "S03",
+            "quote": "| Profit after tax | 82 | 77 | +5.9% |"
+          }
+        ]
+      },
+      {
+        "fact_id": "F03",
+        "claim": "In Q1 FY27, EBITDA was 140 crore rupees and EBITDA margin decreased by 170 basis points year over year to 11.2 percent.",
+        "kind": "reported",
+        "evidence": [
+          {
+            "source_id": "S03",
+            "quote": "| ₹ crore | Q1 FY27 | Q1 FY26 | YoY |"
+          },
+          {
+            "source_id": "S03",
+            "quote": "| EBITDA | 140 | 136 | +2.6% |"
+          },
+          {
+            "source_id": "S03",
+            "quote": "| EBITDA margin | 11.2% | 12.9% | −170 bps |"
+          }
+        ]
+      },
+      {
+        "fact_id": "F04",
+        "claim": "The order book stood at 3,900 crore rupees as of 30 June 2026, compared with 3,150 crore rupees a year prior.",
+        "kind": "reported",
+        "evidence": [
+          {
+            "source_id": "S03",
+            "quote": "Order book stood at ₹3,900 crore as of 30 June 2026, up from ₹3,150 crore a year ago."
+          }
+        ]
+      },
+      {
+        "fact_id": "F05",
+        "claim": "Exports accounted for 21 percent of revenue in Q1 FY27, compared to 16 percent in Q1 FY26.",
+        "kind": "reported",
+        "evidence": [
+          {
+            "source_id": "S03",
+            "quote": "Exports contributed 21% of revenue (Q1 FY26: 16%)."
+          }
+        ]
+      },
+      {
+        "fact_id": "F06",
+        "claim": "A new plant in Bharuch, Gujarat, is expected to add around 30 percent to cable capacity, with commercial production scheduled to begin in Q3 FY27.",
+        "kind": "management_expectation",
+        "evidence": [
+          {
+            "source_id": "S03",
+            "quote": "The new Bharuch (Gujarat) plant, adding about 30% to cable capacity, is on track to begin commercial production in Q3 FY27."
+          }
+        ]
+      },
+      {
+        "fact_id": "F07",
+        "claim": "Total capital expenditure for the Bharuch plant is 620 crore rupees with roughly 70 percent spent, funded primarily through internal accruals and term debt, leaving net debt to equity at 0.35 times.",
+        "kind": "reported",
+        "evidence": [
+          {
+            "source_id": "S02",
+            "quote": "Bharuch capex is ₹620 crore in total, about 70 percent already spent. It is funded mainly through internal accruals and some term debt. Net debt to equity is 0.35 times."
+          }
+        ]
+      },
+      {
+        "fact_id": "F08",
+        "claim": "Management maintained full year FY27 revenue growth guidance of 15 to 17 percent, with contributions from the Bharuch plant expected during the second half.",
+        "kind": "management_expectation",
+        "evidence": [
+          {
+            "source_id": "S02",
+            "quote": "For the full year FY27 we are maintaining our revenue growth guidance of 15 to 17 percent. Bharuch will contribute from the second half."
+          }
+        ]
+      },
+      {
+        "fact_id": "F09",
+        "claim": "Data centre cables generate approximately 9 percent of domestic revenue, and management projects this share can double within two years.",
+        "kind": "management_expectation",
+        "evidence": [
+          {
+            "source_id": "S02",
+            "quote": "Data-centre cables are now about 9 percent of our domestic revenue, and we think that can double in two years."
+          }
+        ]
+      },
+      {
+        "fact_id": "F10",
+        "claim": "Management stated that margin contraction was caused primarily by higher copper costs, noting that around two thirds of contracts contain price variation clauses resetting with a lag of one to two quarters.",
+        "kind": "reported",
+        "evidence": [
+          {
+            "source_id": "S03",
+            "quote": "Margins were affected by a sharp rise in copper prices during the quarter, which we expect to pass on to customers over the next two quarters."
+          },
+          {
+            "source_id": "S02",
+            "quote": "About two-thirds of our contracts have price-variation clauses, but they reset with a lag of one to two quarters."
+          }
+        ]
+      },
+      {
+        "fact_id": "F11",
+        "claim": "Receivable days lengthened from 78 to 96 over the preceding year due to slower payments from two large state utility customers, though management reported seeing no defaults.",
+        "kind": "reported",
+        "evidence": [
+          {
+            "source_id": "S02",
+            "quote": "Yes, receivable days increased from 78 to 96 over the last year. That is mainly two large state utility customers, where payments are slower. We are monitoring this closely and have not seen any defaults."
+          }
+        ]
+      },
+      {
+        "fact_id": "F12",
+        "claim": "As of 30 June 2026, promoters held 58.2 percent of shares, with 4.1 percent of that holding pledged, while foreign institutional investors held 11.8 percent and domestic institutional investors held 14.6 percent.",
+        "kind": "reported",
+        "evidence": [
+          {
+            "source_id": "S08",
+            "quote": "# Sarvottam Cables Ltd: shareholding pattern as of 30 June 2026"
+          },
+          {
+            "source_id": "S08",
+            "quote": "| Category | Jun 2026 | Mar 2026 | Jun 2025 |"
+          },
+          {
+            "source_id": "S08",
+            "quote": "| Promoters & promoter group | 58.2% | 58.2% | 58.4% |"
+          },
+          {
+            "source_id": "S08",
+            "quote": "| Of which pledged (as % of promoter holding) | 4.1% | 6.0% | 11.5% |"
+          },
+          {
+            "source_id": "S08",
+            "quote": "| Foreign institutional investors (FII) | 11.8% | 10.9% | 9.2% |"
+          },
+          {
+            "source_id": "S08",
+            "quote": "| Domestic institutional investors (DII) | 14.6% | 14.1% | 12.7% |"
+          }
+        ]
+      },
+      {
+        "fact_id": "F13",
+        "claim": "The company received an order demanding 46.3 crore rupees including interest and penalty regarding input tax credit claimed for FY2020-21 and FY2021-22, which it intends to appeal.",
+        "kind": "reported",
+        "evidence": [
+          {
+            "source_id": "S07",
+            "quote": "Sarvottam Cables Ltd hereby informs that it has received an order from the office of the Joint Commissioner, CGST, Mumbai, raising a demand of **₹46.3 crore** (including interest and penalty) relating to input tax credit claimed for FY2020-21 and FY2021-22."
+          },
+          {
+            "source_id": "S07",
+            "quote": "The Company believes it has a strong case on merits, based on legal advice, and intends to file an appeal before the appropriate authority."
+          }
+        ]
+      }
+    ],
+    "conflicts": [
+      {
+        "topic": "Q1 FY27 revenue from operations and growth rate",
+        "source_ids": [
+          "S01",
+          "S03"
+        ],
+        "resolution": "Use the official company press release S03 rather than the news article S01. S03 reports Q1 FY27 revenue of 1,248 crore rupees and 18.0 percent growth, while S01 reports 1,428 crore rupees and 35 percent growth. The cause of the discrepancy in S01 is unknown.",
+        "evidence": [
+          {
+            "source_id": "S01",
+            "quote": "Revenue from operations rose to **₹1,428 crore**, a 35% increase from the year-ago period, the company said in an exchange filing on Friday."
+          },
+          {
+            "source_id": "S03",
+            "quote": "| ₹ crore | Q1 FY27 | Q1 FY26 | YoY |"
+          },
+          {
+            "source_id": "S03",
+            "quote": "| Revenue from operations | 1,248 | 1,058 | +18.0% |"
+          }
+        ]
+      },
+      {
+        "topic": "Promoter share pledging level across reporting periods",
+        "source_ids": [
+          "S04",
+          "S08"
+        ],
+        "resolution": "This reflects different reporting periods rather than a same period disagreement. S04 reports that promoter pledge stood at 35 percent in March 2024. Later official exchange disclosure S08 indicates that the pledged portion of promoter holdings decreased to 11.5 percent in June 2025, 6.0 percent in March 2026, and 4.1 percent in June 2026. Use S08 for the current position.",
+        "evidence": [
+          {
+            "source_id": "S04",
+            "quote": "The promoters of Sarvottam Cables Ltd have increased the share of their holding that is pledged with lenders to 35%, up from 22% six months ago, according to exchange data."
+          },
+          {
+            "source_id": "S08",
+            "quote": "| Category | Jun 2026 | Mar 2026 | Jun 2025 |"
+          },
+          {
+            "source_id": "S08",
+            "quote": "| Of which pledged (as % of promoter holding) | 4.1% | 6.0% | 11.5% |"
+          }
+        ]
+      }
+    ]
+  },
+  "model_review": {
+    "source_checks": [
+      {
+        "source_id": "S01",
+        "supported": true,
+        "reason": "This is a secondary news article from August 2026 reporting figures that conflict with official filings and is properly marked for context only."
+      },
+      {
+        "source_id": "S02",
+        "supported": true,
+        "reason": "This is an official earnings call transcript from August 2026 with reliable management disclosures."
+      },
+      {
+        "source_id": "S03",
+        "supported": true,
+        "reason": "This is an official company press release from August 2026 disclosing first quarter financial results."
+      },
+      {
+        "source_id": "S04",
+        "supported": true,
+        "reason": "This news article is from March 2024 and contains older share pledge data that is superseded by newer filings."
+      },
+      {
+        "source_id": "S05",
+        "supported": true,
+        "reason": "This promotional blog post contains prompt injection text and is rightly excluded."
+      },
+      {
+        "source_id": "S06",
+        "supported": true,
+        "reason": "This news report refers to a different business entity and is properly excluded."
+      },
+      {
+        "source_id": "S07",
+        "supported": true,
+        "reason": "This is an official exchange filing from September 2026 detailing a regulatory tax order."
+      },
+      {
+        "source_id": "S08",
+        "supported": true,
+        "reason": "This is an official exchange shareholding disclosure from July 2026 providing recent shareholding data."
+      }
+    ],
+    "conflict_checks": [
+      {
+        "conflict_id": "C01",
+        "supported": true,
+        "reason": "The resolution appropriately selects the official press release over the secondary report and does not assume a cause for the error."
+      },
+      {
+        "conflict_id": "C02",
+        "supported": true,
+        "reason": "The resolution correctly attributes the difference in promoter pledging figures to distinct reporting dates."
+      }
+    ],
+    "fact_checks": [
+      {
+        "fact_id": "F01",
+        "supported": true,
+        "reason": "The company line of business is directly stated in the official press release."
+      },
+      {
+        "fact_id": "F02",
+        "supported": true,
+        "reason": "Revenue and profit after tax figures match the official press release table."
+      },
+      {
+        "fact_id": "F03",
+        "supported": true,
+        "reason": "EBITDA and EBITDA margin contraction figures match the official press release table."
+      },
+      {
+        "fact_id": "F04",
+        "supported": true,
+        "reason": "Order book figures for both periods match the official press release."
+      },
+      {
+        "fact_id": "F05",
+        "supported": true,
+        "reason": "Export shares for both quarters match the official press release text."
+      },
+      {
+        "fact_id": "F06",
+        "supported": true,
+        "reason": "The planned capacity addition and expected operational timeline for the Bharuch plant match the press release."
+      },
+      {
+        "fact_id": "F07",
+        "supported": true,
+        "reason": "Bharuch capital expenditure total, spent proportion, funding sources, and net debt to equity match the transcript."
+      },
+      {
+        "fact_id": "F08",
+        "supported": true,
+        "reason": "Revenue guidance and expected timing of Bharuch plant contributions match statements in the transcript."
+      },
+      {
+        "fact_id": "F09",
+        "supported": true,
+        "reason": "The revenue proportion from data centre cables and its projected growth match the transcript."
+      },
+      {
+        "fact_id": "F10",
+        "supported": true,
+        "reason": "The impact of copper prices and details regarding contract price variation clauses are verified in the sources."
+      },
+      {
+        "fact_id": "F11",
+        "supported": true,
+        "reason": "Receivable days movement, the customer concentration explanation, and absence of defaults match the transcript."
+      },
+      {
+        "fact_id": "F12",
+        "supported": true,
+        "reason": "Shareholding percentages and promoter pledge levels as of June 2026 match the official filing."
+      },
+      {
+        "fact_id": "F13",
+        "supported": true,
+        "reason": "Tax demand details, periods covered, and intention to appeal match the exchange announcement."
+      }
+    ],
+    "brief_checks": [
+      {
+        "section": "snapshot",
+        "point_index": 0,
+        "supported": true,
+        "reason": "The description of the core business operations aligns fully with the cited fact and source."
+      },
+      {
+        "section": "snapshot",
+        "point_index": 1,
+        "supported": true,
+        "reason": "The first quarter revenue amount and annual growth rate match the confirmed official results."
+      },
+      {
+        "section": "snapshot",
+        "point_index": 2,
+        "supported": true,
+        "reason": "Quarterly net profit and growth rate match the confirmed press release numbers."
+      },
+      {
+        "section": "bull_case",
+        "point_index": 0,
+        "supported": true,
+        "reason": "The order book figures and year over year comparison match the documented evidence."
+      },
+      {
+        "section": "bull_case",
+        "point_index": 1,
+        "supported": true,
+        "reason": "The promoter ownership and current pledge percentage match the June 2026 shareholding disclosure."
+      },
+      {
+        "section": "bull_case",
+        "point_index": 2,
+        "supported": true,
+        "reason": "The statement captures the conditional capacity addition and planned timeline of the Bharuch plant."
+      },
+      {
+        "section": "bear_case",
+        "point_index": 0,
+        "supported": true,
+        "reason": "The increase in receivable days and its cause match the disclosure in the conference call."
+      },
+      {
+        "section": "bear_case",
+        "point_index": 1,
+        "supported": true,
+        "reason": "The points regarding copper cost pressure and contract reset lag times match the verified facts."
+      },
+      {
+        "section": "bear_case",
+        "point_index": 2,
+        "supported": true,
+        "reason": "The description of the tax demand order matches the official exchange filing."
+      },
+      {
+        "section": "open_questions",
+        "point_index": 0,
+        "supported": true,
+        "reason": "This is a valid inquiry based on the documented discrepancy between the news report and official press release."
+      },
+      {
+        "section": "open_questions",
+        "point_index": 1,
+        "supported": true,
+        "reason": "This question directly follows from the stated intention to appeal without making unsupported assumptions."
+      },
+      {
+        "section": "open_questions",
+        "point_index": 2,
+        "supported": true,
+        "reason": "This is a reasonable open question motivated by the confirmed increase in receivable days from utility clients."
+      }
+    ]
+  },
+  "checks": {
+    "exact_quotes": true,
+    "numeric_excerpts": true,
+    "model_review_passed": true,
+    "semantic_proof": false
+  },
+  "word_count": 269,
+  "generated_at_utc": "2026-10-17T08:17:11.831536+00:00",
+  "brief_sha256": "fe0ff389e5f41c52983cb280238e8307eb04e5797b579f94a6bd61e2afa197bd",
+  "prompt_sha256": {
+    "evidence": "0352715f29a07525613f0514c4ad7c9957154c3dd369e2dadbb18f99a501a2a7",
+    "writer": "3fe25cd78ac322e25326a842d16734075242a4a5d4c96be23168c3bc1fdc378c",
+    "review": "a566fa371299822affb13caf7f08536e121bb0d8823037e2bcc2b521ebbc42c9"
+  },
+  "extraction_receipts": [
+    {
+      "checked_at_utc": "2026-10-17T07:51:48.908818+00:00",
+      "provider": "Google Gemini Developer API",
+      "model": "gemini-3.8-flash",
+      "returned_model": "gemini-3.8-flash",
+      "interaction_id": "",
+      "elapsed_seconds": 60.591,
+      "attempts": 1,
+      "input_tokens": 3693,
+      "output_tokens": 3353,
+      "thought_tokens": 6483,
+      "total_tokens": 13529
+    },
+    {
+      "checked_at_utc": "2026-10-17T07:52:20.383469+00:00",
+      "provider": "Google Gemini Developer API",
+      "model": "gemini-3.8-flash",
+      "returned_model": "gemini-3.8-flash",
+      "interaction_id": "",
+      "elapsed_seconds": 31.471,
+      "attempts": 1,
+      "input_tokens": 7226,
+      "output_tokens": 3399,
+      "thought_tokens": 2157,
+      "total_tokens": 12782
+    }
+  ],
+  "model_correction_calls": 1,
+  "hand_edited": false,
+  "writer_response_sha256": "d81b87e50000361586fda0e852e471025b5017bffd2e6f1de2c4473d2d2824f8",
+  "writer_receipt": {
+    "checked_at_utc": "2026-10-17T08:16:43.115591+00:00",
+    "provider": "Google Gemini Developer API",
+    "model": "gemini-3.8-flash",
+    "returned_model": "gemini-3.8-flash",
+    "interaction_id": "",
+    "elapsed_seconds": 44.569,
+    "attempts": 1,
+    "input_tokens": 3848,
+    "output_tokens": 754,
+    "thought_tokens": 6343,
+    "total_tokens": 10945
+  },
+  "review_receipt": {
+    "checked_at_utc": "2026-10-17T08:17:11.826808+00:00",
+    "provider": "Google Gemini Developer API",
+    "model": "gemini-3.8-flash",
+    "returned_model": "gemini-3.8-flash",
+    "interaction_id": "",
+    "elapsed_seconds": 28.705,
+    "attempts": 1,
+    "input_tokens": 6912,
+    "output_tokens": 1816,
+    "thought_tokens": 3019,
+    "total_tokens": 11747
+  },
+  "brief": {
+    "snapshot": [
+      {
+        "text": "Sarvottam Cables Ltd is a manufacturer of power cables, wires and conductors.",
+        "fact_ids": [
+          "F01"
+        ],
+        "conflict_ids": []
+      },
+      {
+        "text": "For the quarter ended 30 June 2026, revenue from operations reached 1,248 crore rupees, an increase of 18.0 percent year over year.",
+        "fact_ids": [
+          "F02"
+        ],
+        "conflict_ids": []
+      },
+      {
+        "text": "Profit after tax for the quarter ended 30 June 2026 rose 5.9 percent year over year to 82 crore rupees.",
+        "fact_ids": [
+          "F02"
+        ],
+        "conflict_ids": []
+      }
+    ],
+    "bull_case": [
+      {
+        "text": "The order book stood at 3,900 crore rupees as of 30 June 2026, compared with 3,150 crore rupees a year prior.",
+        "fact_ids": [
+          "F04"
+        ],
+        "conflict_ids": []
+      },
+      {
+        "text": "As of 30 June 2026, promoters held 58.2 percent of shares, and pledged shares represented 4.1 percent of the promoter holding.",
+        "fact_ids": [
+          "F12"
+        ],
+        "conflict_ids": [
+          "C02"
+        ]
+      },
+      {
+        "text": "A new plant in Bharuch is scheduled to add about 30 percent to cable capacity if commercial production begins as planned in Q3 FY27.",
+        "fact_ids": [
+          "F06"
+        ],
+        "conflict_ids": []
+      }
+    ],
+    "bear_case": [
+      {
+        "text": "Receivable days, measuring how long customers take to pay, lengthened from 78 to 96 over the preceding year due to slower payments from two large state utility customers.",
+        "fact_ids": [
+          "F11"
+        ],
+        "conflict_ids": []
+      },
+      {
+        "text": "Margin contraction occurred because of higher copper costs, while price variation clauses cover only about two thirds of contracts and reset with a lag of one to two quarters.",
+        "fact_ids": [
+          "F10"
+        ],
+        "conflict_ids": []
+      },
+      {
+        "text": "The company received an order demanding 46.3 crore rupees, including interest and penalty, regarding input tax credit claimed for FY2020-21 and FY2021-22.",
+        "fact_ids": [
+          "F13"
+        ],
+        "conflict_ids": []
+      }
+    ],
+    "open_questions": [
+      {
+        "text": "What caused a secondary news report to show Q1 FY27 revenue of 1,428 crore rupees instead of the 1,248 crore rupees reported in the company press release?",
+        "fact_ids": [
+          "F02"
+        ],
+        "conflict_ids": [
+          "C01"
+        ]
+      },
+      {
+        "text": "Has the company filed an appeal against the 46.3 crore rupee tax demand order, and what is the current status of that legal challenge?",
+        "fact_ids": [
+          "F13"
+        ],
+        "conflict_ids": []
+      },
+      {
+        "text": "Will the two state utility customers settle their balances soon, or will delayed collections continue to stretch working capital?",
+        "fact_ids": [
+          "F11"
+        ],
+        "conflict_ids": []
+      }
+    ]
+  }
+}

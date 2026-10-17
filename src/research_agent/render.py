@@ -2,6 +2,7 @@
 
 import re
 from datetime import date
+from urllib.parse import quote
 
 from .documents import Document
 from .models import EvidenceLedger, ResearchBrief
@@ -18,6 +19,7 @@ def render_markdown(
     ticker: str,
     company: str | None,
     as_of: date,
+    source_base: str = "../research_pack",
 ) -> str:
     facts = {fact.fact_id: fact for fact in ledger.facts}
     sources = {doc.source_id: doc for doc in docs}
@@ -40,9 +42,10 @@ def render_markdown(
     lines += ["## Sources", ""]
     for sid in sorted(used):
         doc = sources[sid]
+        source_path = quote(source_base.rstrip("/") + "/" + doc.filename, safe="/.-")
         lines += [
             f'<a id="source-{sid.lower()}"></a>',
-            f"- **{sid}** — [{plain(doc.filename)}](<{doc.url}>) · {doc.published}.",
+            f"- **{sid}** — [{plain(doc.filename)}](<{source_path}>) · {doc.published}.",
         ]
     lines += ["", "Research based only on the supplied documents.", ""]
     return "\n".join(lines)

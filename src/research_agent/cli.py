@@ -51,8 +51,9 @@ def check_setup(project_dir: Path) -> list[SetupCheck]:
         "pyproject.toml",
         "README.md",
         ".env.example",
-        "src/research_agent/prompts/evidence_v4.md",
-        "src/research_agent/prompts/writer_v4.md",
+        "src/research_agent/prompts/evidence_v5.md",
+        "src/research_agent/prompts/writer_v5.md",
+        "src/research_agent/prompts/review_v1.md",
     ):
         exists = (project_dir / filename).is_file()
         checks.append(SetupCheck(filename, exists, "present" if exists else "missing"))
@@ -121,10 +122,11 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--as-of", type=research_date, required=True)
     run.add_argument("--project-dir", type=Path, default=Path.cwd())
     run.add_argument("--output-root", type=Path)
+    run.add_argument("--export-dir", type=Path, help="Save the brief and evidence for review")
     run.add_argument(
         "--writer-version",
-        choices=["writer_v4"],
-        default="writer_v4",
+        choices=["writer_v5"],
+        default="writer_v5",
     )
     run.add_argument(
         "--evidence-run",
@@ -206,6 +208,7 @@ def main(argv: list[str] | None = None) -> int:
                     else project_dir / "artifacts" / "runs"
                 ),
                 writer_version=args.writer_version,
+                export_dir=args.export_dir.expanduser().resolve() if args.export_dir else None,
                 evidence_run=args.evidence_run.expanduser().resolve()
                 if args.evidence_run
                 else None,
@@ -300,6 +303,6 @@ def main(argv: list[str] | None = None) -> int:
             )
             return 1
         print(f"Receipt: {path}")
-        print("The account's billing tier and future quota availability were not verified.")
+        print("The account billing tier and future quota availability were not verified.")
         return 0
     return 2

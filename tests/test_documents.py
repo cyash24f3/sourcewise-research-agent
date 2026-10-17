@@ -99,15 +99,15 @@ def test_nested_sources_and_supported_extensions(tmp_path):
 @pytest.mark.parametrize(
     "old,new,message",
     [
-        ("source: Example investor relations", "", "missing metadata field 'source'"),
-        ("source: Example investor relations", "source: null", "missing metadata field 'source'"),
+        ("source: Example investor relations", "", "missing metadata field: source"),
+        ("source: Example investor relations", "source: null", "missing metadata field: source"),
         ("source: Example investor relations", "source: 12", "single-line text"),
         ("source: Example investor relations", "source: []", "single-line text"),
         ("source: Example investor relations", "source: ''", "single-line text"),
         ("type: official company filing", "type: false", "single-line text"),
         ("published: 2026-09-23", "published: '2026-02-30'", "valid YYYY-MM-DD date"),
         ("published: 2026-09-23", "published: '20260923'", "valid YYYY-MM-DD date"),
-        ("published: 2026-09-23", "published: null", "missing metadata field 'published'"),
+        ("published: 2026-09-23", "published: null", "missing metadata field: published"),
         ("published: 2026-09-23", "published: 2026-02-30", "invalid YAML metadata"),
         ("url: https://example.com/filing", "url: javascript:alert(1)", "safe HTTP"),
         ("url: https://example.com/filing", "url: https://example.com:invalid/path", "safe HTTP"),

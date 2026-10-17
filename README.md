@@ -1,60 +1,58 @@
 # SourceWise Research Agent
 
-A Python agent that takes an NSE ticker and supplied documents and produces a
-cited brief: Snapshot, Bull case, Bear case, Open questions, and Sources.
+Give the agent an NSE ticker and a folder of documents. It writes a short brief
+with a Snapshot, Bull case, Bear case, Open questions and Sources.
 
 ## Run
 
 Requires Python 3.10+ and [uv](https://docs.astral.sh/uv/).
 
 ```bash
-uv sync --extra dev
+uv sync --frozen --extra dev
 cp -n .env.example .env
 # Add GEMINI_API_KEY to .env.
 uv run research run --ticker SRVCABLE --company "Sarvottam Cables Ltd" \
-  --docs research_pack --as-of 2026-09-23
+  --docs research_pack --as-of 2026-09-23 --export-dir submission
 ```
 
-The command prints the path to the generated `brief.md` under `artifacts/runs/`.
-The fictional test case uses 23 September 2026 as the research date.
+The export contains the brief and its evidence. Full replies, checks and API
+receipts stay under `artifacts/runs/`. The eight original inputs are in
+`research_pack/`. SRVCABLE is fictional; the research date is 23 September 2026.
 
-For the local browser demo:
+## How it works
 
-```bash
-uv run python scripts/demo_server.py
-# Open http://127.0.0.1:8765
-```
+Three Gemini calls read the sources, write from quoted facts, then check every
+fact and brief point against the original files. Python checks exact quotes,
+numbers, references, dates and length. A failed quote check allows one logged
+model correction. The program never repairs a quote by fuzzy matching.
 
-## Model and design
+Source links open the actual input files. Conflicts keep both sides; current
+filings take priority over old reports. Promotional instructions and unrelated
+companies are excluded. Forecasts stay conditional.
 
-The agent uses **Gemini 3.8 Flash** through the official Google Python SDK and
-Interactions API, with structured JSON output and medium reasoning. The model was
-selected for the free-tier workflow, document context, and speed. Free quota and
-future availability depend on the Google project.
+The model is **Gemini 3.8 Flash**, used directly through the official Google SDK
+and Interactions API. I chose it for speed, structured output and the free tier.
+Quota and future availability depend on the Google project.
 
-One call assesses sources and extracts quoted evidence. Another writes from that
-evidence. Python checks references, quotations, numbers, dates, and length, then
-builds citations from original source metadata. Instructions embedded in documents
-are treated as untrusted data.
+The extra review can still miss an error. These checks do not prove that a source
+is true. There is no live market feed or valuation model.
 
-Long quotes with small copying errors can be aligned to one unique original source
-paragraph when character coverage is at least 94%. Changes are logged; claims and
-source IDs stay unchanged. These checks establish provenance, not source truth or
-complete semantic support. There is no live market feed or valuation model.
+Separate system prompts: [read](src/research_agent/prompts/evidence_v5.md),
+[write](src/research_agent/prompts/writer_v5.md),
+[review](src/research_agent/prompts/review_v1.md).
 
-Separate system prompts:
+## Review the result
 
-- [Evidence assessment](src/research_agent/prompts/evidence_v4.md)
-- [Brief writing](src/research_agent/prompts/writer_v4.md)
+- [Generated brief](submission/SRVCABLE_brief.md), with no hand edits.
+- [Evidence and review](submission/evidence.json): source decisions, exact quotes,
+  conflicts, claim checks and API receipts.
+- [Test log](TEST_LOG.md) and [run results](submission/experiment_results.json).
+- [Live demo](https://drive.google.com/file/d/17gT_gOsWWC8RmR1kozjdQ9QOLTF2NcjY/view):
+  a captioned recording of the final writing and review calls using saved evidence
+  from a fresh run. It covers one design choice and one limitation. No voice narration.
 
-## Evaluation
-
-- [Generated SRVCABLE brief](submission/SRVCABLE_brief.md), with no hand edits.
-- [Three-run test log](TEST_LOG.md) and [run results](submission/experiment_results.json).
-- [2-minute-20-second demo](https://drive.google.com/file/d/17gT_gOsWWC8RmR1kozjdQ9QOLTF2NcjY/view):
-  captioned live application recording showing experiment 3, a design decision,
-  and a limitation. The final brief followed an additional writing pass.
-- `research_pack/` contains the eight original input documents.
+For the browser demo, run `uv run python scripts/demo_server.py` and open
+[localhost](http://127.0.0.1:8765). A run needs your own API key.
 
 ```bash
 uv run pytest -q
@@ -62,4 +60,4 @@ uv run ruff check src tests scripts
 uv run ruff format --check src tests scripts
 ```
 
-The tests run offline. API keys belong in `.env`, which is excluded from Git.
+The tests run offline. Keep the API key in `.env`; it is excluded from Git.

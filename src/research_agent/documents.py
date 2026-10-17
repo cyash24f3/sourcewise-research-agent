@@ -103,15 +103,15 @@ def parse_document(path: Path, source_id: str, filename: str) -> Document:
         raise DocumentError(f"{filename}: front matter must be an object.")
     for field in ("source", "url", "published", "type"):
         if field not in meta or meta[field] is None:
-            raise DocumentError(f"{filename}: missing metadata field '{field}'.")
+            raise DocumentError(f"{filename}: missing metadata field: {field}.")
     for field in ("source", "url", "type"):
         value = meta[field]
         if not isinstance(value, str) or not value.strip() or re.search(r"[\x00-\x1f\x7f]", value):
-            raise DocumentError(f"{filename}: '{field}' must be non-empty, single-line text.")
+            raise DocumentError(f"{filename}: {field} must be non-empty, single-line text.")
     try:
         published = parse_date(str(meta["published"])).isoformat()
     except ValueError as exc:
-        raise DocumentError(f"{filename}: 'published' must be a valid YYYY-MM-DD date.") from exc
+        raise DocumentError(f"{filename}: published must be a valid YYYY-MM-DD date.") from exc
     url = meta["url"].strip()
     if not safe_url(url):
         raise DocumentError(f"{filename}: source URL must be a safe HTTP(S) URL.")

@@ -4,7 +4,7 @@ import re
 from decimal import Decimal
 
 from .documents import Document
-from .models import EvidenceLedger, ResearchBrief
+from .models import EvidenceLedger, GroundingReview, ResearchBrief
 
 
 class ValidationFailure(ValueError):
@@ -76,9 +76,8 @@ def validate_ledger(ledger: EvidenceLedger, docs: list[Document]) -> None:
         check_quotes(fact.fact_id, fact.evidence)
         if fact.kind != "inference":
             cited = {item.source_id for item in fact.evidence if item.source_id in sources}
-            source_text = " ".join(
-                sources[sid].body + " " + sources[sid].published for sid in cited
-            )
+            source_text = " ".join(item.quote for item in fact.evidence)
+            source_text += " " + " ".join(sources[sid].published for sid in cited)
             unsupported = numeric_values(fact.claim) - numeric_values(source_text)
             if unsupported:
                 errors.append(
@@ -105,9 +104,11 @@ def validate_brief(brief: ResearchBrief, ledger: EvidenceLedger, max_words: int 
     for section, points in brief.sections():
         if not points or len(points) > 4:
             errors.append(f"{section}: use 1–4 concise points.")
-        for point in points:
+        for index, point in enumerate(points):
             if not point.text.strip():
                 errors.append(f"{section}: empty point.")
+            if any(mark in point.text for mark in "'’‘"):
+                errors.append(f"{section}: avoid apostrophes in authored text.")
             if "\n" in point.text or re.search(r"https?://|\]\(|<[^>]+>", point.text):
                 errors.append(f"{section}: use plain text; citations are inserted by the renderer.")
             if not point.fact_ids and not point.conflict_ids:
@@ -120,10 +121,59 @@ def validate_brief(brief: ResearchBrief, ledger: EvidenceLedger, max_words: int 
             support += " " + " ".join(
                 conflicts[cid].resolution for cid in point.conflict_ids if cid in conflicts
             )
-            if numeric_values(point.text) - numeric_values(support):
-                errors.append(f"{section}: numeric claim absent from referenced evidence.")
+            unsupported = numeric_values(point.text) - numeric_values(support)
+            if unsupported:
+                values = ", ".join(str(value) for value in sorted(unsupported))
+                errors.append(
+                    f"{section}[{index}]: numeric claim absent from referenced evidence: {values}."
+                )
     count = word_count(brief)
     if count > max_words:
         errors.append(f"Brief is {count} words; maximum is {max_words} excluding Sources.")
+    if errors:
+        raise ValidationFailure(errors)
+
+
+def validate_review(review: GroundingReview, ledger: EvidenceLedger, brief: ResearchBrief) -> None:
+    errors = []
+    for label, expected, checks, key in [
+        (
+            "source decision",
+            {item.source_id for item in ledger.source_decisions},
+            review.source_checks,
+            "source_id",
+        ),
+        (
+            "conflict",
+            {f"C{i:02}" for i, _ in enumerate(ledger.conflicts, 1)},
+            review.conflict_checks,
+            "conflict_id",
+        ),
+    ]:
+        actual = [getattr(item, key) for item in checks]
+        if len(set(actual)) != len(actual) or set(actual) != expected:
+            errors.append(f"The model review must check every {label} exactly once.")
+        for item in checks:
+            if not item.supported or not item.reason.strip():
+                errors.append(f"{label} {getattr(item, key)}: {item.reason or 'missing reason'}")
+    expected_facts = {fact.fact_id for fact in ledger.facts}
+    checked_facts = [item.fact_id for item in review.fact_checks]
+    if len(set(checked_facts)) != len(checked_facts) or set(checked_facts) != expected_facts:
+        errors.append("The model review must check every fact exactly once.")
+    section_names = ["snapshot", "bull_case", "bear_case", "open_questions"]
+    expected_points = {
+        (name, index) for name in section_names for index, _ in enumerate(getattr(brief, name))
+    }
+    checked_points = [(item.section, item.point_index) for item in review.brief_checks]
+    if len(set(checked_points)) != len(checked_points) or set(checked_points) != expected_points:
+        errors.append("The model review must check every brief point exactly once.")
+    for item in review.fact_checks:
+        if not item.reason.strip() or not item.supported:
+            errors.append(f"Fact {item.fact_id}: {item.reason or 'missing review reason'}")
+    for item in review.brief_checks:
+        if not item.reason.strip() or not item.supported:
+            errors.append(
+                f"{item.section}[{item.point_index}]: {item.reason or 'missing review reason'}"
+            )
     if errors:
         raise ValidationFailure(errors)

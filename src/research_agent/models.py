@@ -18,7 +18,7 @@ class SourceDecision(StrictModel):
 class EvidenceQuote(StrictModel):
     source_id: str
     quote: str = Field(
-        description="Exact contiguous excerpt from this source's body, including Markdown."
+        description="Copy an exact passage from the source body, including Markdown."
     )
 
 
@@ -61,3 +61,35 @@ class ResearchBrief(StrictModel):
             ("Bear case", self.bear_case),
             ("Open questions", self.open_questions),
         ]
+
+
+class FactCheck(StrictModel):
+    fact_id: str
+    supported: bool
+    reason: str
+
+
+class BriefCheck(StrictModel):
+    section: Literal["snapshot", "bull_case", "bear_case", "open_questions"]
+    point_index: int = Field(ge=0)
+    supported: bool
+    reason: str
+
+
+class SourceCheck(StrictModel):
+    source_id: str
+    supported: bool
+    reason: str
+
+
+class ConflictCheck(StrictModel):
+    conflict_id: str
+    supported: bool
+    reason: str
+
+
+class GroundingReview(StrictModel):
+    source_checks: list[SourceCheck]
+    conflict_checks: list[ConflictCheck]
+    fact_checks: list[FactCheck]
+    brief_checks: list[BriefCheck]

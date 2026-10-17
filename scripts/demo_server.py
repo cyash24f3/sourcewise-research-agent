@@ -1,5 +1,6 @@
 """Local demo viewer for the real CLI. Run: uv run python scripts/demo_server.py."""
 
+import argparse
 import json
 import subprocess
 import threading
@@ -12,8 +13,10 @@ STATE = {
     "log": "Ready. Click Run agent to make real Gemini requests.",
     "brief": "",
     "run_dir": "",
+    "mode": "Fresh extraction, writing and review",
 }
 LOCK = threading.Lock()
+EVIDENCE_RUN = None
 
 
 def execute():
@@ -31,10 +34,14 @@ def execute():
         "--project-dir",
         str(ROOT),
         "--writer-version",
-        "writer_v4",
+        "writer_v5",
+        "--export-dir",
+        str(ROOT / "submission"),
         "--output-root",
         str(ROOT / "artifacts/demo"),
     ]
+    if EVIDENCE_RUN:
+        command += ["--evidence-run", str(EVIDENCE_RUN)]
     try:
         process = subprocess.Popen(
             command, cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True
@@ -94,7 +101,12 @@ class Handler(BaseHTTPRequestHandler):
             if STATE["running"]:
                 self.send_error(409)
                 return
-            STATE.update(running=True, log="Starting real research run...\n", brief="", run_dir="")
+            STATE.update(
+                running=True,
+                log=f"Starting real research run...\n{STATE['mode']}\n",
+                brief="",
+                run_dir="",
+            )
         threading.Thread(target=execute, daemon=True).start()
         self.send_response(202)
         self.end_headers()
@@ -104,5 +116,11 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Local viewer for the research CLI.")
+    parser.add_argument("--evidence-run", type=Path, help="Reuse a matching evidence run")
+    args = parser.parse_args()
+    EVIDENCE_RUN = args.evidence_run.resolve() if args.evidence_run else None
+    if EVIDENCE_RUN:
+        STATE["mode"] = "Saved evidence; fresh writing and review"
     print("Demo viewer: http://127.0.0.1:8765", flush=True)
     ThreadingHTTPServer(("127.0.0.1", 8765), Handler).serve_forever()

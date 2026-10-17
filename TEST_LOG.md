@@ -1,19 +1,25 @@
 # Test log
 
-SRVCABLE · research date 2026-09-23 · execution date 2026-10-17 · Gemini 3.8 Flash.
-These experiments used real API calls. Timings, token usage, prompt hashes, and
-validation results are in [experiment_results.json](submission/experiment_results.json).
+All runs used real Gemini 3.8 Flash calls with a research date of 23 September 2026.
+[Run results](submission/experiment_results.json) keep timings, usage and prompt hashes.
 
-| Run | What went wrong | Change and outcome |
+| Run | What happened | What changed |
 |---|---|---|
-| 1 | A fiscal year changed inside a quotation. The resulting 387-word brief also blurred capex spending with funding. | Exact-quote validation stopped extraction. Added logged alignment to one original source paragraph, resumed extraction, and made a writer call. Tightened the financial wording for later prompts. |
-| 2 | Two more copying errors; the 435-word brief omitted the business description and inferred that remaining contracts lacked protection. | Used stricter copying instructions and simpler writing. Resumed after logged quote alignment, then made a new writer call. Added explicit coverage and inference rules. |
-| 3 | A fresh two-stage run produced 361 words. Checks passed, but review caught unsupported product wording, broad profit language, and omitted current pledging. | Tightened business scope, margin-versus-profit wording, and current-pledge coverage. This is the run shown in the recording. |
+| 1 | A quote changed a fiscal year. The 387-word draft also confused spending with funding. | Exact matching caught the quote. At the time, logged alignment allowed a restart. Tightened the financial wording. |
+| 2 | More copying errors. The 435-word draft missed the business description and overstated contract risk. | Added copying, business coverage and inference rules. This run also resumed after logged alignment. |
+| 3 | A fresh run produced 361 words. Review found unsupported product wording and missing current pledge data. | Tightened business scope, margin wording and current-data coverage. |
+| 4 | A new writer call reused the reviewed ledger and produced 314 words. | Shortened the brief. This was the earlier submission. |
+| 5 | The stricter checks caught a missing date excerpt, then blocked unsupported date expansions in the draft. Inspection also found a guessed cause for the revenue conflict. | Added table-header quotes and exact date wording. Extended model review to source decisions and conflict explanations. |
+| 6 | A fresh run corrected one missing date excerpt, then passed all three stages. The 265-word brief still omitted current pledging. | Made current pledge coverage explicit and clarified financial terms. |
+| 7 | Reused the checked evidence from run 6 and made new writing and review calls. All checks passed. | Selected this 269-word brief. This is the run in the recording. |
 
-A final writing pass used the complete, previously reviewed evidence ledger with
-writer v4 and produced the **314-word submission brief**. It reused evidence and
-made a new writer call; it was not another fresh extraction. No narrative was
-edited by hand. Current prompts are in `src/research_agent/prompts/`.
+The audit also found that fuzzy quote repair could let the wrong metric pass when
+its number appeared elsewhere in a source. That repair path is removed. The agent
+now allows one explicit model correction and keeps both replies.
 
-Quote matching and numeric presence do not prove a correct interpretation. That
-limitation remains relevant even when all automated checks pass.
+A separate live probe used revenue of 100 and capex of 900 in one exact quote.
+The wrong claim, revenue of 900, passed numeric matching but the new model review
+rejected it. Offline tests also check that a rejected review cannot export a brief.
+
+The final brief has no hand edits. Original sources and verbatim quotes stay
+unchanged. Model review is another check, not proof of accuracy.

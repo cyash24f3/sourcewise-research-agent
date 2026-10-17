@@ -9,7 +9,7 @@ import pytest
 from research_agent import evidence
 from research_agent.config import GeminiSettings
 from research_agent.documents import DocumentError, load_documents
-from research_agent.evidence import ExtractionFailure, align_quotations, extract_evidence
+from research_agent.evidence import ExtractionFailure, extract_evidence
 from research_agent.gemini import ConnectionReceipt, GeminiRequestError
 from research_agent.models import EvidenceLedger
 from research_agent.validation import ValidationFailure, numeric_values, validate_ledger
@@ -284,32 +284,61 @@ def test_source_directory_cannot_be_used_for_evidence_outputs(pack, tmp_path):
         )
 
 
-def test_long_quote_alignment_preserves_claim_and_uses_original_paragraph(pack, ledger):
-    docs, _ = load_documents(pack, AS_OF)
-    long_text = (
-        "The company reports quarterly revenue of ₹100 crore and expects production in December."
-    )
+def test_almost_matching_quote_with_wrong_amount_is_rejected(pack, ledger):
     from dataclasses import replace
 
-    docs[0] = replace(docs[0], body=long_text)
-    ledger.facts[0].evidence[0].quote = long_text.replace("quarterly", "quarte rly")
-    original_claim = ledger.facts[0].claim
-    changes = align_quotations(ledger, docs)
-    assert len(changes) == 1
-    assert changes[0]["original_quote"] != changes[0]["source_paragraph"]
-    assert ledger.facts[0].evidence[0].quote == long_text
-    assert ledger.facts[0].claim == original_claim
-
-
-def test_quote_alignment_does_not_repair_ambiguous_candidates(pack, ledger):
-    docs, _ = load_documents(pack, AS_OF)
-    long_text = (
-        "The company reports quarterly revenue of ₹100 crore and expects production in December."
+    body = (
+        "Quarterly revenue was ₹100 crore, while planned capital expenditure was ₹900 crore. "
+        "Management expects production to begin in December."
     )
+    docs, _ = load_documents(pack, AS_OF)
+    docs[0] = replace(docs[0], body=body)
+    ledger.facts[0].claim = "Quarterly revenue was ₹900 crore."
+    ledger.facts[0].evidence[0].quote = body.replace("₹100", "₹900", 1)
+    with pytest.raises(ValidationFailure, match="quote not found verbatim"):
+        validate_ledger(ledger, docs)
+
+
+def test_number_elsewhere_in_source_does_not_support_cited_excerpt(pack, ledger):
     from dataclasses import replace
 
-    docs[0] = replace(docs[0], body=long_text + "\n\n" + long_text + " Further context.")
-    proposed = long_text.replace("quarterly", "quarte rly")
-    ledger.facts[0].evidence[0].quote = proposed
-    assert align_quotations(ledger, docs) == []
-    assert ledger.facts[0].evidence[0].quote == proposed
+    docs, _ = load_documents(pack, AS_OF)
+    docs[0] = replace(docs[0], body=docs[0].body + "\nCapex was ₹900 crore.")
+    ledger.facts[0].claim = "Quarter revenue was ₹900 crore."
+    with pytest.raises(ValidationFailure, match="numeric claims absent"):
+        validate_ledger(ledger, docs)
+
+
+def test_one_model_correction_preserves_both_responses(pack, ledger, tmp_path, monkeypatch):
+    bad = ledger.model_copy(deep=True)
+    bad.facts[0].evidence[0].quote = "Quarter revenue was ₹100 crores."
+    replies = [bad.model_dump_json(), ledger.model_dump_json()]
+    calls = []
+
+    def generate(settings, **kwargs):
+        calls.append(kwargs)
+        return fixture_receipt(replies[len(calls) - 1])
+
+    monkeypatch.setattr(evidence, "generate_text", generate)
+    result = run_extract(pack, tmp_path)
+    assert len(calls) == 2
+    assert (result.directory / "response.txt").read_text().strip() == replies[0]
+    assert (result.directory / "repair_response.txt").read_text().strip() == replies[1]
+    assert json.loads((result.directory / "initial_validation.json").read_text())["passed"] is False
+    assert json.loads((result.directory / "run.json").read_text())["model_correction_calls"] == 1
+    assert "validation_errors" in json.loads(calls[1]["prompt"])
+
+
+def test_model_correction_stops_after_one_attempt(pack, ledger, tmp_path, monkeypatch):
+    calls = []
+    ledger.facts[0].evidence[0].quote = "Quarter revenue was ₹100 crores."
+
+    def generate(settings, **kwargs):
+        calls.append(kwargs)
+        return fixture_receipt(ledger.model_dump_json())
+
+    monkeypatch.setattr(evidence, "generate_text", generate)
+    with pytest.raises(ExtractionFailure) as raised:
+        run_extract(pack, tmp_path)
+    assert len(calls) == 2
+    assert not (raised.value.run_dir / "ledger.json").exists()
