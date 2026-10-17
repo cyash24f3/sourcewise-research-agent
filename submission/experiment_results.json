@@ -1,0 +1,187 @@
+[
+  {
+    "experiment": 1,
+    "review_status": "needed_prompt_revision",
+    "extraction": {
+      "status": "validated",
+      "started_at_utc": "2026-10-17T06:50:38.372779+00:00",
+      "completed_at_utc": "2026-10-17T06:51:17.257822+00:00",
+      "prompt_version": "evidence_v3",
+      "prompt_sha256": "02823b9e74bc5c9ab9f17038537d23e60888d162e175e25ee29b14bd22317aae",
+      "resumed_after_quote_alignment": true,
+      "model": "gemini-3.8-flash",
+      "elapsed_seconds": 38.879,
+      "attempts": 1,
+      "input_tokens": 4423,
+      "output_tokens": 3312,
+      "thought_tokens": 3536,
+      "total_tokens": 11271,
+      "initial_validation": {
+        "passed": false,
+        "errors": [
+          "F11: quote not found verbatim in S07."
+        ]
+      },
+      "automatic_quote_alignments": 1
+    },
+    "writer": {
+      "status": "complete",
+      "started_at_utc": "2026-10-17T06:53:22.764838+00:00",
+      "completed_at_utc": "2026-10-17T06:54:15.542768+00:00",
+      "writer_version": "writer_v1",
+      "prompt_sha256": "f458c98fb7eeabf1a38e0a132dc666786d864cd9c8980a2b8dd36896cc5712f2",
+      "fresh_extraction": false,
+      "word_count": 387,
+      "model": "gemini-3.8-flash",
+      "elapsed_seconds": 52.771,
+      "attempts": 2,
+      "input_tokens": 3618,
+      "output_tokens": 1079,
+      "thought_tokens": 2207,
+      "total_tokens": 6904,
+      "validation": {
+        "passed": true,
+        "word_count": 387,
+        "max_words": 450,
+        "source_excerpts_matched": true,
+        "references_known": true,
+        "numeric_source_checks": true,
+        "semantic_entailment_verified": false
+      }
+    }
+  },
+  {
+    "experiment": 2,
+    "review_status": "needed_prompt_revision",
+    "extraction": {
+      "status": "validated",
+      "started_at_utc": "2026-10-17T06:51:51.093795+00:00",
+      "completed_at_utc": "2026-10-17T06:52:24.839741+00:00",
+      "prompt_version": "evidence_v4",
+      "prompt_sha256": "178faa0473a6a0840a46992a00a022d75a7ef9c58d50252f525272aef9ea2bcd",
+      "resumed_after_quote_alignment": true,
+      "model": "gemini-3.8-flash",
+      "elapsed_seconds": 33.74,
+      "attempts": 1,
+      "input_tokens": 4527,
+      "output_tokens": 3269,
+      "thought_tokens": 2495,
+      "total_tokens": 10291,
+      "initial_validation": {
+        "passed": false,
+        "errors": [
+          "F07: quote not found verbatim in S03.",
+          "F12: quote not found verbatim in S07."
+        ]
+      },
+      "automatic_quote_alignments": 2
+    },
+    "writer": {
+      "status": "complete",
+      "started_at_utc": "2026-10-17T06:54:17.048689+00:00",
+      "completed_at_utc": "2026-10-17T06:54:51.045577+00:00",
+      "writer_version": "writer_v2",
+      "prompt_sha256": "02b30c87fc3929d4f9cd5b784d88b4c639421afc0e17abb635fee1c53358b404",
+      "fresh_extraction": false,
+      "word_count": 435,
+      "model": "gemini-3.8-flash",
+      "elapsed_seconds": 33.991,
+      "attempts": 1,
+      "input_tokens": 3701,
+      "output_tokens": 1110,
+      "thought_tokens": 4283,
+      "total_tokens": 9094,
+      "validation": {
+        "passed": true,
+        "word_count": 435,
+        "max_words": 450,
+        "source_excerpts_matched": true,
+        "references_known": true,
+        "numeric_source_checks": true,
+        "semantic_entailment_verified": false
+      }
+    }
+  },
+  {
+    "experiment": 3,
+    "review_status": "needed_prompt_revision",
+    "extraction": {
+      "status": "validated",
+      "started_at_utc": "2026-10-17T06:56:09.134418+00:00",
+      "completed_at_utc": "2026-10-17T06:57:06.439312+00:00",
+      "prompt_version": "evidence_v4",
+      "prompt_sha256": "178faa0473a6a0840a46992a00a022d75a7ef9c58d50252f525272aef9ea2bcd",
+      "model": "gemini-3.8-flash",
+      "elapsed_seconds": 57.297,
+      "attempts": 1,
+      "input_tokens": 4527,
+      "output_tokens": 3081,
+      "thought_tokens": 6527,
+      "total_tokens": 14135,
+      "validation": {
+        "passed": true,
+        "schema_valid": true,
+        "exact_quotes_verified": true,
+        "numeric_source_checks": true,
+        "source_decisions_complete": true,
+        "semantic_entailment_verified": false,
+        "fact_count": 12,
+        "conflict_count": 2
+      }
+    },
+    "writer": {
+      "status": "complete",
+      "started_at_utc": "2026-10-17T06:56:09.132497+00:00",
+      "completed_at_utc": "2026-10-17T06:57:36.179039+00:00",
+      "writer_version": "writer_v3",
+      "prompt_sha256": "5fa17b088f202be0341e7b8a082e705d46ad373863318aa58712614ae149c2ff",
+      "fresh_extraction": true,
+      "word_count": 361,
+      "model": "gemini-3.8-flash",
+      "elapsed_seconds": 29.73,
+      "attempts": 1,
+      "input_tokens": 3683,
+      "output_tokens": 969,
+      "thought_tokens": 3536,
+      "total_tokens": 8188,
+      "validation": {
+        "passed": true,
+        "word_count": 361,
+        "max_words": 450,
+        "source_excerpts_matched": true,
+        "references_known": true,
+        "numeric_source_checks": true,
+        "semantic_entailment_verified": false
+      }
+    }
+  },
+  {
+    "experiment": "final_composition",
+    "review_status": "accepted_with_documented_semantic_limitations",
+    "writer": {
+      "status": "complete",
+      "started_at_utc": "2026-10-17T06:58:25.118399+00:00",
+      "completed_at_utc": "2026-10-17T06:58:55.272103+00:00",
+      "writer_version": "writer_v4",
+      "prompt_sha256": "fb81c309edeb07dae8eeff98894743aafcc70c90a03006aae51049e5b49d9b23",
+      "fresh_extraction": false,
+      "word_count": 314,
+      "model": "gemini-3.8-flash",
+      "elapsed_seconds": 30.146,
+      "attempts": 1,
+      "input_tokens": 4169,
+      "output_tokens": 1073,
+      "thought_tokens": 3785,
+      "total_tokens": 9027,
+      "validation": {
+        "passed": true,
+        "word_count": 314,
+        "max_words": 450,
+        "source_excerpts_matched": true,
+        "references_known": true,
+        "numeric_source_checks": true,
+        "semantic_entailment_verified": false
+      }
+    }
+  }
+]

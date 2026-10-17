@@ -45,7 +45,7 @@ def run_research(
 ) -> ResearchRun:
     if output_root.resolve().is_relative_to(docs_dir.resolve()):
         raise DocumentError("Save runs outside the source directory to preserve inputs.")
-    if writer_version not in {"writer_v1", "writer_v2", "writer_v3", "writer_v4"}:
+    if writer_version != "writer_v4":
         raise DocumentError("Unknown writer prompt version.")
     prompt = files("research_agent").joinpath(f"prompts/{writer_version}.md").read_text()
     docs, future = load_documents(docs_dir, as_of)

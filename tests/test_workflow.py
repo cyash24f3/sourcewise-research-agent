@@ -162,7 +162,7 @@ def test_reused_evidence_is_revalidated_and_original_response_preserved(
         docs_dir=tmp_path / "docs",
         as_of=date(2026, 9, 23),
         output_root=tmp_path / "runs",
-        writer_version="writer_v1",
+        writer_version="writer_v4",
         evidence_run=evidence,
     )
     assert (result.directory / "response.txt").read_text().strip() == original

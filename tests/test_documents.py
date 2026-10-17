@@ -44,7 +44,7 @@ def test_original_pack_is_complete_and_matches_download_manifest():
     docs, future = load_documents(PROJECT / "research_pack", AS_OF)
     assert len(docs) == 8
     assert future == []
-    original = json.loads((PROJECT / "assignment/download_manifest.json").read_text())
+    original = json.loads((PROJECT / "tests/fixtures/research_pack_manifest.json").read_text())
     expected = {entry["name"]: entry for entry in original if entry["name"] != "README.md"}
     assert {doc.filename for doc in docs} == set(expected)
     for doc in docs:

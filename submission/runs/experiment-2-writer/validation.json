@@ -1,9 +1,0 @@
-{
-  "passed": true,
-  "word_count": 435,
-  "max_words": 450,
-  "source_excerpts_matched": true,
-  "references_known": true,
-  "numeric_source_checks": true,
-  "semantic_entailment_verified": false
-}

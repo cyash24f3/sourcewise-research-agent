@@ -1,75 +1,19 @@
-# Real experiment log
+# Test log
 
-Company: Sarvottam Cables Ltd (NSE: SRVCABLE). Research date: **2026-09-23**.
-Execution date: 2026-10-17. All calls used Gemini 3.8 Flash. Outputs are retained
-exactly as returned; automatic quote alignment is recorded separately.
-These are real API runs, not mocked test fixtures.
+SRVCABLE · research date 2026-09-23 · execution date 2026-10-17 · Gemini 3.8 Flash.
+These experiments used real API calls. Timings, token usage, prompt hashes, and
+validation results are in [experiment_results.json](submission/experiment_results.json).
 
-## Experiment 1 — baseline writer
+| Run | What went wrong | Change and outcome |
+|---|---|---|
+| 1 | A fiscal year changed inside a quotation. The resulting 387-word brief also blurred capex spending with funding. | Exact-quote validation stopped extraction. Added logged alignment to one original source paragraph, resumed extraction, and made a writer call. Tightened the financial wording for later prompts. |
+| 2 | Two more copying errors; the 435-word brief omitted the business description and inferred that remaining contracts lacked protection. | Used stricter copying instructions and simpler writing. Resumed after logged quote alignment, then made a new writer call. Added explicit coverage and inference rules. |
+| 3 | A fresh two-stage run produced 361 words. Checks passed, but review caught unsupported product wording, broad profit language, and omitted current pledging. | Tightened business scope, margin-versus-profit wording, and current-pledge coverage. This is the run shown in the recording. |
 
-- Extraction prompt: `evidence_v3.md`; writer: `writer_v1.md`.
-- The initial extraction changed `FY2020-21` to `FY20-21` inside an otherwise
-  near-verbatim quotation. Exact-quote validation rejected it and saved the failure.
-- Design change: add deterministic alignment of long, near-verbatim quotations to
-  one unique original source paragraph. This never changes claims or source IDs;
-  it preserves original output and logs the replacement. Revalidation still applies.
-- Resumed the saved extraction without another extraction call; made a real writer
-  request. Completed brief: **387 words**, excluding Sources.
-- Review: the brief was dense, repeated the revenue discrepancy, and blurred
-  project spending progress with funding. It was not selected for submission.
-- Preserved evidence: `submission/runs/experiment-1-extraction/` and
-  `submission/runs/experiment-1-writer/`.
+A final writing pass used the complete, previously reviewed evidence ledger with
+writer v4 and produced the **314-word submission brief**. It reused evidence and
+made a new writer call; it was not another fresh extraction. No narrative was
+edited by hand. Current prompts are in `src/research_agent/prompts/`.
 
-## Experiment 2 — copying discipline and retail clarity
-
-- New extraction request with `evidence_v4.md`: fewer material facts, explicit
-  character-for-character copying, and short contiguous excerpts. Writer changed
-  to `writer_v2.md`: explain jargon and make questions actionable.
-- Initial extraction still contained two quote-copy errors: a broken word and a
-  paraphrased opening to the tax disclosure. The deterministic policy selected
-  their unique source paragraphs; original failures remain in `initial_*` files.
-- Resumed from that real extraction and made a new writer request. Completed brief:
-  **435 words**, excluding Sources.
-- Review: improved collection-language explanation, but still too long. Snapshot
-  omitted the business description, and it inferred that the remaining contracts
-  lacked protection. Appeal status also needed more careful wording.
-- Preserved evidence: `submission/runs/experiment-2-extraction/` and
-  `submission/runs/experiment-2-writer/`.
-
-## Experiment 3 — compact, attributed final writer
-
-- Fresh two-stage run from the original document pack, using `evidence_v4.md` and
-  `writer_v3.md`. This is also the run shown in the demo recording.
-- Writer changes: target 280–340 words, include the business in a short Snapshot,
-  move the conflicting revenue figure to Open questions, preserve spending versus
-  funding relationships, and forbid unsupported inverse-contract/appeal-status claims.
-- Completed in two fresh API stages with **361 words**. The recorded run passed
-  mechanical checks. Review still found unsupported product wording/adjectives,
-  broad profit language where only margins narrowed, and omitted current pledging.
-- Preserved in `submission/runs/experiment-3/`; the brief is not the final submission.
-
-## Final composition — semantic precision
-
-- `writer_v4.md` adds explicit business-scope, margin-versus-profit, conditional
-  expansion, and current-pledge requirements.
-- Reuses the complete, previously reviewed Milestone 5 evidence ledger, which
-  explicitly includes the business description. A new writer API call generates
-  the final narrative. This is an additional composition, not another fresh extraction.
-- `submission/runs/final-composition/` preserves the input, prompt, receipt, raw
-  response and final output; `submission/final_review.json` records the scoped review.
-
-## Earlier evidence-stage development
-
-Before these full research experiments, the evidence stage was separately tested.
-High reasoning exhausted the output budget; medium reasoning completed the ledger.
-Inspection also caught a speculative explanation of a discrepancy, an unsupported
-share-price event date, and a combined historical/current claim missing its second
-source. Prompt versions and the detailed development history are in `MILESTONES.md`.
-Those evidence-only requests are not counted as complete research experiments.
-
-## Limits of the checks
-
-Automated success establishes schema, evidence references, quote provenance,
-numeric presence, and length constraints. It does not prove source truth or full
-semantic entailment. Experiments 1 and 2 demonstrate why review is still necessary.
-The final Markdown is copied directly from the pipeline; no narrative is hand-edited.
+Quote matching and numeric presence do not prove a correct interpretation. That
+limitation remains relevant even when all automated checks pass.

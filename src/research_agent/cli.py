@@ -47,7 +47,13 @@ def check_setup(project_dir: Path) -> list[SetupCheck]:
         else:
             checks.append(SetupCheck(distribution, True, installed_version))
 
-    for filename in ("pyproject.toml", "README.md", ".env.example", "assignment/README.md"):
+    for filename in (
+        "pyproject.toml",
+        "README.md",
+        ".env.example",
+        "src/research_agent/prompts/evidence_v4.md",
+        "src/research_agent/prompts/writer_v4.md",
+    ):
         exists = (project_dir / filename).is_file()
         checks.append(SetupCheck(filename, exists, "present" if exists else "missing"))
 
@@ -117,7 +123,7 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--output-root", type=Path)
     run.add_argument(
         "--writer-version",
-        choices=["writer_v1", "writer_v2", "writer_v3", "writer_v4"],
+        choices=["writer_v4"],
         default="writer_v4",
     )
     run.add_argument(
